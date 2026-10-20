@@ -222,7 +222,8 @@ const CONFIG = /*CFG*/{
   "noteLink": "say something",
   "notePrompt": "a note for sai",
   "notePlaceholder": "write anything…",
-  "noteSend": "send"
+  "noteSend": "send",
+  "imessage": "+15715858909"
 }/*END*/;
 /* ===================================================================================== */
 const SRC='<!doctype html>\n'+document.documentElement.outerHTML;
@@ -273,13 +274,13 @@ $('#cta').onclick=()=>{if(checked)return;checked=true;said='yes';$('#no').classL
 let said='';
 $('#no').onclick=()=>{if(checked)return;checked=true;said='no';$('#no').classList.add('gone');$('#cta').classList.add('gone');
   $('#sky1').classList.remove('on');setTimeout(()=>$('#sky3').classList.add('on'),900);setTimeout(()=>$('#after').classList.add('on'),900)};
-function sendMsg(t){const n=String(C.whatsapp||'').replace(/\D/g,'');t=encodeURIComponent(t);location.href=n?`https://wa.me/${n}?text=${t}`:`sms:&body=${t}`}
+function sendMsg(t){const n=String(C.whatsapp||'').replace(/\D/g,'');t=encodeURIComponent(t);location.href=n?`https://wa.me/${n}?text=${t}`:`sms:${String(C.imessage||'').replace(/[^\d+]/g,'')}&body=${t}`}
 $('#note').onclick=()=>{$('#sheet').classList.add('on');$('#ns').disabled=!$('#nt').value.trim();setTimeout(()=>$('#nt').focus(),350)};
 $('#sx').onclick=()=>$('#sheet').classList.remove('on');
 $('#sheet').onclick=e=>{if(e.target.id==='sheet')$('#sheet').classList.remove('on')};
 $('#nt').oninput=()=>$('#ns').disabled=!$('#nt').value.trim();
 $('#ns').onclick=()=>{const v=$('#nt').value.trim();if(v){$('#sheet').classList.remove('on');sendMsg(v)}};
-$('#tell').onclick=()=>{const n=String(C.whatsapp||'').replace(/\D/g,''),t=encodeURIComponent(said==='no'?C.noReply:C.replyText);location.href=n?`https://wa.me/${n}?text=${t}`:`sms:&body=${t}`};
+$('#tell').onclick=()=>{const n=String(C.whatsapp||'').replace(/\D/g,''),t=encodeURIComponent(said==='no'?C.noReply:C.replyText);location.href=n?`https://wa.me/${n}?text=${t}`:`sms:${String(C.imessage||'').replace(/[^\d+]/g,'')}&body=${t}`};
 $('#cal').onclick=()=>{const s=new Date(C.calStart);if(isNaN(s)){toast('set calStart like 2026-10-24T19:00');return}const e=new Date(s.getTime()+(parseFloat(C.calHours)||3)*36e5);
   const f=d=>d.toISOString().replace(/[-:]/g,'').split('.')[0]+'Z';
   const ics=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//windowseat//EN','BEGIN:VEVENT','UID:'+Date.now()+'@ws','DTSTAMP:'+f(new Date()),'DTSTART:'+f(s),'DTEND:'+f(e),'SUMMARY:'+C.calTitle,'DESCRIPTION:pickup: '+C.gate,'END:VEVENT','END:VCALENDAR'].join('\r\n');
@@ -292,7 +293,7 @@ function restart(){fill();opened=false;checked=false;shade.style.transition='tra
 /* editor */
 if(EDIT){document.body.classList.add('editing');const ed=$('#ed');
   const G={"the window":["kicker","hint","skyLine1","skyLine2"],"the pass":["airline","fromCode","fromName","toCode","toName","herName","date","time","seat","gate","cls","checkIn","checkedIn","stamp"],"if she says no":["noEmoji","noLine1","noLine2","noReply"],"her own note":["noteLink","notePrompt","notePlaceholder","noteSend"],
-    "after check-in":["nightLine1","nightLine2","senderName","whatsapp","replyText","calTitle","calStart","calHours","sound"]};
+    "after check-in":["nightLine1","nightLine2","senderName","imessage","whatsapp","replyText","calTitle","calStart","calHours","sound"]};
   const tip={fromCode:"short word, e.g. YOU",toCode:"short word, e.g. US",whatsapp:"country code + number, digits only. empty = iMessage",calStart:"YYYY-MM-DDTHH:MM",sound:"on / off (soft cabin chime)"};
   let h='<h3>✏️ edit your window seat</h3><p>Changes save as you type. <b>Preview</b> replays it, and <b>Download</b> saves the page to send.</p>';
   for(const[g,ks]of Object.entries(G)){h+=`<div class="grp">${g.toUpperCase()}</div>`;ks.forEach(k=>h+=`<div class="f"><label>${k}${tip[k]?' · '+tip[k]:''}</label><input data-k="${k}"></div>`)}
