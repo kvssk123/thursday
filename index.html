@@ -269,8 +269,10 @@ $('#cal').onclick=()=>{const s=new Date(C.calStart),e=new Date(s.getTime()+(pars
 
 let W=nowWin();fill();scene(W);
 if(PREVIEW){const pv=$('#pv'),n=W.id,last=S.windows.length-1;pv.style.display='block';pv.innerHTML=`${n>0?`<a href="?w=${n-1}&k=${C.previewKey}">‹</a>`:''} preview · ${n+1}/${last+1} · ${W.kicker} ${n<last?`<a href="?w=${n+1}&k=${C.previewKey}">›</a>`:''}`}
-let seen=null;try{seen=localStorage.getItem('thu.v2.seen')}catch(_){}
-if(!PREVIEW&&seen===String(W.id))requestAnimationFrame(()=>openShade(true));
+$('#shade').style.display='none';$('#hint').style.display='none';
+requestAnimationFrame(()=>{opened=true;setTimeout(()=>{$('#sky').classList.add('on');$('#alti').classList.add('on')},300);
+  if(['night','blue','dawn'].includes(W.phase))setTimeout(()=>$('#shoot').classList.add('go'),2600);
+  setTimeout(()=>{$('#pass').classList.add('on');document.body.classList.add('passup');fit()},1100)});
 function recheck(){if(PREVIEW)return;const n=nowWin();if(n.id!==W.id)location.reload()}
 document.addEventListener('visibilitychange',()=>{if(!document.hidden)recheck()});addEventListener('pageshow',recheck);setInterval(recheck,60000);
 addEventListener('resize',()=>{if(opened)fit()});
