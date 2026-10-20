@@ -257,6 +257,10 @@ body.passup .hint{opacity:0}
 window.__E=[];addEventListener('error',e=>{__E.push((e.message||'')+' @'+(e.lineno||''))});
 </script>
 <script>
+if(/[?&]reset=1/.test(location.search)){try{Object.keys(localStorage).filter(k=>k.startsWith('thu')).forEach(k=>localStorage.removeItem(k));sessionStorage.clear()}catch(_){}
+  ['thu3ans','thu4ans'].forEach(n=>document.cookie=n+'=;path=/thursday;max-age=0');location.replace(location.pathname+'?r='+Date.now())}
+</script>
+<script>
 const C={"airline": "dinner with sai", "fromCode": "YOU", "fromName": "your place", "toCode": "US", "toName": "somewhere with good dessert", "herName": "my bujji bangaram", "date": "thu, oct 22", "time": "7:00 pm", "seat": "6A · window", "gate": "your door, 6:45", "cls": "just us", "checkedIn": "it's a date 🫣", "stamp": "confirmed", "senderName": "sai", "imessage": "+15715858909", "whatsapp": "", "calTitle": "Dinner with Sai", "calStart": "2026-10-22T19:00", "calHours": "3", "marginNote": "princess attire. no exceptions.", "replyText": "looking forward to thursday 🫣", "previewKey": "6a"};
 const S=JSON.parse(new TextDecoder().decode(Uint8Array.from(atob("eyJ3aW5kb3dzIjogW3siaWQiOiAwLCAiYXQiOiAiMjAyNi0xMC0yMFQxMTowMDowMC0wNDowMCIsICJraWNrZXIiOiAidHVlc2RheSDCtyBsYXRlIG1vcm5pbmciLCAibDEiOiAiYW4gb3JkaW5hcnkgdHVlc2RheSwiLCAibDIiOiAic2xpZ2h0bHkgYmV0dGVyLiIsICJzdGF0dXMiOiAiYm9hcmRpbmcgaW4gMiBkYXlzIiwgInBoYXNlIjogImRheSIsICJhbHQiOiAwLCAibWFya3MiOiAwLCAiZ2FtZSI6ICJkZXBhcnR1cmVzIn0sIHsiaWQiOiAxLCAiYXQiOiAiMjAyNi0xMC0yMFQxNzowMDowMC0wNDowMCIsICJraWNrZXIiOiAidHVlc2RheSDCtyBnb2xkZW4gaG91ciIsICJsMSI6ICJzb2Z0IGxpZ2h0LiIsICJsMiI6ICJzaG9ydCB3ZWVrLiIsICJzdGF0dXMiOiAib24gdGltZSIsICJwaGFzZSI6ICJnb2xkZW4iLCAiYWx0IjogMCwgIm1hcmtzIjogMSwgImdhbWUiOiAidHJvbGxleSJ9LCB7ImlkIjogMiwgImF0IjogIjIwMjYtMTAtMjBUMjM6MDA6MDAtMDQ6MDAiLCAia2lja2VyIjogInR1ZXNkYXkgwrcgbmlnaHQiLCAibDEiOiAib25lIG5pZ2h0IGRvd24uIiwgImwyIjogInNsZWVwIHdlbGwuIiwgInN0YXR1cyI6ICIyIG5pZ2h0cyB0byBnbyIsICJwaGFzZSI6ICJuaWdodCIsICJhbHQiOiAxLCAibWFya3MiOiAyLCAiZ2FtZSI6ICJjYWJpbiJ9LCB7ImlkIjogMywgImF0IjogIjIwMjYtMTAtMjFUMDU6MDA6MDAtMDQ6MDAiLCAia2lja2VyIjogIndlZG5lc2RheSDCtyBmaXJzdCBsaWdodCIsICJsMSI6ICJoYWxmd2F5IHRoZXJlLiIsICJsMiI6ICJ0aGUgc2t5IGFncmVlcy4iLCAic3RhdHVzIjogIm9uIHNjaGVkdWxlIiwgInBoYXNlIjogImRhd24iLCAiYWx0IjogMSwgIm1hcmtzIjogM30sIHsiaWQiOiA0LCAiYXQiOiAiMjAyNi0xMC0yMVQxMTowMDowMC0wNDowMCIsICJraWNrZXIiOiAid2VkbmVzZGF5IMK3IG1pZGRheSIsICJsMSI6ICJkcmVzcyBjb2RlOiBwcmluY2Vzcy4iLCAibDIiOiAieW91IG93biBvbmUsIHJpZ2h0PyIsICJzdGF0dXMiOiAiZHJlc3MgY29kZTogcHJpbmNlc3MiLCAicGhhc2UiOiAiZGF5IiwgImFsdCI6IDIsICJtYXJrcyI6IDMsICJjdGEiOiAiaSBoYXZlIG9uZSIsICJyZXBseSI6ICJpIGhhdmUgb25lLiBvYnZpb3VzbHkuIn0sIHsiaWQiOiA1LCAiYXQiOiAiMjAyNi0xMC0yMVQxNzowMDowMC0wNDowMCIsICJraWNrZXIiOiAid2VkbmVzZGF5IMK3IGV2ZW5pbmciLCAibDEiOiAidGhpcyB0aW1lIHRvbW9ycm93LCIsICJsMiI6ICJhbG1vc3QuIiwgInN0YXR1cyI6ICJib2FyZGluZyB0b21vcnJvdyIsICJwaGFzZSI6ICJnb2xkZW4iLCAiYWx0IjogMiwgIm1hcmtzIjogNH0sIHsiaWQiOiA2LCAiYXQiOiAiMjAyNi0xMC0yMVQyMzowMDowMC0wNDowMCIsICJraWNrZXIiOiAid2VkbmVzZGF5IMK3IGxhdGUiLCAibDEiOiAib25lIG1vcmUgc2xlZXAuIiwgImwyIjogInRpYXJhIG9wdGlvbmFsLiIsICJzdGF0dXMiOiAiMSBuaWdodCB0byBnbyIsICJwaGFzZSI6ICJuaWdodCIsICJhbHQiOiAzLCAibWFya3MiOiA0fSwgeyJpZCI6IDcsICJhdCI6ICIyMDI2LTEwLTIyVDA1OjAwOjAwLTA0OjAwIiwgImtpY2tlciI6ICJ0aHVyc2RheSDCtyBlYXJseSIsICJsMSI6ICJnb29kIG1vcm5pbmcsIiwgImwyIjogInBhc3NlbmdlciA2YS4iLCAic3RhdHVzIjogInRvZGF5IiwgInBoYXNlIjogImRhd24iLCAiYWx0IjogMywgIm1hcmtzIjogNX0sIHsiaWQiOiA4LCAiYXQiOiAiMjAyNi0xMC0yMlQxMTowMDowMC0wNDowMCIsICJraWNrZXIiOiAidGh1cnNkYXkgwrcgbGF0ZSBtb3JuaW5nIiwgImwxIjogInRoZXJlIHdpbGwgYmUgZmxvd2Vycy4iLCAibDIiOiAiYWN0IHN1cnByaXNlZC4iLCAic3RhdHVzIjogImNhcmdvOiBmbG93ZXJzIChub3QgYSBzZWNyZXQpIiwgInBoYXNlIjogImRheSIsICJhbHQiOiA0LCAibWFya3MiOiA1LCAiY3RhIjogImknbGwgYWN0IHN1cnByaXNlZCIsICJyZXBseSI6ICJpJ2xsIGFjdCBzdXJwcmlzZWQuIn0sIHsiaWQiOiA5LCAiYXQiOiAiMjAyNi0xMC0yMlQxNzowMDowMC0wNDowMCIsICJraWNrZXIiOiAidGh1cnNkYXkgwrcgYWxtb3N0IiwgImwxIjogInNhdmUgcm9vbSIsICJsMiI6ICJmb3IgZGVzc2VydC4iLCAic3RhdHVzIjogInBpY2t1cCA2OjQ1IMK3IHlvdXIgZG9vciIsICJwaGFzZSI6ICJnb2xkZW4iLCAiYWx0IjogNSwgIm1hcmtzIjogNX0sIHsiaWQiOiAxMCwgImF0IjogIjIwMjYtMTAtMjJUMTg6NDU6MDAtMDQ6MDAiLCAia2lja2VyIjogIm5vdyBib2FyZGluZyIsICJsMSI6ICJsb29rIG91dHNpZGUuIiwgImwyIjogImknbSBoZXJlLiIsICJzdGF0dXMiOiAibm93IGJvYXJkaW5nIMK3IHNlYXQgNmEiLCAicGhhc2UiOiAiYmx1ZSIsICJhbHQiOiA2LCAibWFya3MiOiA2LCAic3RhbXAiOiAiYm9hcmRlZCIsICJjdGEiOiAiY29taW5nIGRvd24g8J+royIsICJyZXBseSI6ICJjb21pbmcgZG93biDwn6ujIn0sIHsiaWQiOiAxMSwgImF0IjogIjIwMjYtMTAtMjJUMjM6MDA6MDAtMDQ6MDAiLCAia2lja2VyIjogInRodXJzZGF5IMK3IGFmdGVyIiwgImwxIjogInRoYW5rIHlvdSIsICJsMiI6ICJmb3IgdG9uaWdodC4iLCAic3RhdHVzIjogImxhbmRlZCIsICJwaGFzZSI6ICJuaWdodCIsICJhbHQiOiA2LCAibWFya3MiOiA2LCAic3RhbXAiOiAibGFuZGVkIiwgInJlcGx5IjogInRoYW5rIHlvdSBmb3IgdG9uaWdodC4iLCAiYWZ0ZXIiOiB0cnVlfSwgeyJpZCI6IDEyLCAiYXQiOiAiMjAyNi0xMC0yM1QwODowMDowMC0wNDowMCIsICJraWNrZXIiOiAiZnJpZGF5IMK3IG1vcm5pbmciLCAibDEiOiAic3RpbGwgdGhpbmtpbmciLCAibDIiOiAiYWJvdXQgZGVzc2VydC4iLCAic3RhdHVzIjogIm5leHQgZmxpZ2h0OiB3aGVuZXZlciB5b3UgbGlrZSIsICJwaGFzZSI6ICJtb3JuaW5nIiwgImFsdCI6IDYsICJtYXJrcyI6IDYsICJzdGFtcCI6ICJsYW5kZWQiLCAicmVwbHkiOiAic2FtZS4iLCAiYWZ0ZXIiOiB0cnVlfV19"),c=>c.charCodeAt(0))));
 const $=s=>document.querySelector(s);
@@ -358,7 +362,7 @@ $('#cal').onclick=()=>{const s=new Date(C.calStart),e=new Date(s.getTime()+(pars
 /* stars (once) */
 (function(){const s=$('#stars');seed(99);for(let i=0;i<55;i++){const d=document.createElement('div');d.className='star';d.style.left=rnd()*100+'%';d.style.top=rnd()*62+'%';const z=rnd();d.style.width=d.style.height=(z>.85?2.6:1.6)+'px';d.style.setProperty('--o',(.45+rnd()*.55).toFixed(2));d.style.setProperty('--d',(-rnd()*2.4)+'s');s.appendChild(d)}})();
 
-const BUILD='1020124335';
+const BUILD='1020124614';
 (function(){if(PREVIEW)return;fetch(location.pathname+'?cb='+Date.now(),{cache:'no-store'}).then(r=>r.text()).then(t=>{const m=t.match(/const BUILD='([^']+)'/);if(m&&m[1]!==BUILD&&!sessionStorage.getItem('rl'+m[1])){sessionStorage.setItem('rl'+m[1],'1');location.replace(location.pathname+'?b='+m[1])}}).catch(()=>{})})();
 let W=nowWin();fill();scene(W);
 /* 1. departures board — cuisine */
@@ -426,9 +430,9 @@ function cabin(s){
   s.querySelector('#lk').onclick=function(){this.style.opacity=0;const w=W[Math.round(v*4)];card('cabin',w,'noted. the crew will set the mood.',`cabin lights set to: ${w}.`)};
 }
 const GAMES={departures:{fn:departures,key:'meal'},trolley:{fn:trolley,key:'dessert'},cabin:{fn:cabin,key:'cabin'}};
-let ANS={};try{ANS=JSON.parse(localStorage.getItem('thu3.ans')||'{}')}catch(_){}
-try{const m=document.cookie.match(/(?:^|; )thu3ans=([^;]*)/);if(m)ANS=Object.assign(JSON.parse(decodeURIComponent(m[1])),ANS)}catch(_){}
-function saveAns(){if(PREVIEW)return;const j=JSON.stringify(ANS);try{localStorage.setItem('thu3.ans',j)}catch(_){}try{document.cookie='thu3ans='+encodeURIComponent(j)+';path=/thursday;max-age=1209600;samesite=lax'}catch(_){}}
+let ANS={};try{ANS=JSON.parse(localStorage.getItem('thu4.ans')||'{}')}catch(_){}
+try{const m=document.cookie.match(/(?:^|; )thu4ans=([^;]*)/);if(m)ANS=Object.assign(JSON.parse(decodeURIComponent(m[1])),ANS)}catch(_){}
+function saveAns(){if(PREVIEW)return;const j=JSON.stringify(ANS);try{localStorage.setItem('thu4.ans',j)}catch(_){}try{document.cookie='thu4ans='+encodeURIComponent(j)+';path=/thursday;max-age=1209600;samesite=lax'}catch(_){}}
 function showPrefs(){const L=[];const it=(k,g,lab)=>{if(ANS[k])L.push(`<span class="pf" data-g="${g}">${lab}: <b>${ANS[k]}</b> <u>change</u></span>`)};it('meal','departures','in-flight meal');it('dessert','trolley','dessert');it('cabin','cabin','cabin');
   const p=$('#prefs');p.innerHTML=L.join('<br>');p.querySelectorAll('.pf').forEach(e=>e.onclick=()=>openGame(e.dataset.g));p.style.display=L.length?'block':'none';if(opened&&$('#pass').classList.contains('on')){fit();setTimeout(fit,120)}}
 let GK=null;
@@ -450,16 +454,16 @@ function pendingGame(){ // current window's game, else earliest earlier unanswer
 showPrefs();
 {const pg=pendingGame();if(pg)setTimeout(()=>{try{openGame(pg)}catch(e){__E.push('openGame: '+e.message)}},PREVIEW?400:900)}
 if(qs.has('dbg')){setTimeout(()=>{const d=document.createElement('div');d.style.cssText='position:fixed;left:8px;right:8px;top:8px;z-index:999;background:#000c;color:#9f9;font:11px/1.4 monospace;padding:8px;border-radius:8px;white-space:pre-wrap';
-  let a='';try{a=localStorage.getItem('thu3.ans')}catch(e){a='ls err '+e.message}
+  let a='';try{a=localStorage.getItem('thu4.ans')}catch(e){a='ls err '+e.message}
   d.textContent=`build ${BUILD}\nwindow ${W.id} ${W.kicker}\ngame ${W.game} pending ${pendingGame()}\nans ${a}\ngm ${$('#gm').className}\nerrors ${JSON.stringify(__E)}\n${navigator.userAgent}`;
-  const b=document.createElement('button');b.textContent='reset my answers';b.onclick=()=>{localStorage.removeItem('thu3.ans');location.replace(location.pathname+'?r='+Date.now())};d.appendChild(document.createElement('br'));d.appendChild(b);document.body.appendChild(d)},2500)}
+  const b=document.createElement('button');b.textContent='reset my answers';b.onclick=()=>{localStorage.removeItem('thu4.ans');location.replace(location.pathname+'?r='+Date.now())};d.appendChild(document.createElement('br'));d.appendChild(b);document.body.appendChild(d)},2500)}
 if(PREVIEW){const pv=$('#pv'),n=W.id,last=S.windows.length-1;pv.style.display='block';pv.innerHTML=`${n>0?`<a href="?w=${n-1}&k=${C.previewKey}">‹</a>`:''} preview · ${n+1}/${last+1} · ${W.kicker} ${n<last?`<a href="?w=${n+1}&k=${C.previewKey}">›</a>`:''}`}
 let visits=0;try{visits=+(localStorage.getItem('thu.visits')||0);if(!PREVIEW){visits++;localStorage.setItem('thu.visits',String(visits))}}catch(_){}
 if(PREVIEW&&qs.has('v'))visits=+qs.get('v');
-let wbSeen=null;try{wbSeen=localStorage.getItem('thu3.wb')}catch(_){}
+let wbSeen=null;try{wbSeen=localStorage.getItem('thu4.wb')}catch(_){}
 const hasGame=(()=>{try{return !!pendingGame()}catch(_){return false}})();
 const FF=visits>=3&&(PREVIEW?qs.has('v'):(wbSeen!==String(W.id)&&!hasGame));
-if(FF&&!PREVIEW)try{localStorage.setItem('thu3.wb',String(W.id))}catch(_){}
+if(FF&&!PREVIEW)try{localStorage.setItem('thu4.wb',String(W.id))}catch(_){}
 const FFB=visits>=3;
 $('#shade').style.display='none';$('#hint').style.display='none';
 requestAnimationFrame(()=>{opened=true;
