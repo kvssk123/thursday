@@ -356,7 +356,7 @@ $('#cal').onclick=()=>{const s=new Date(C.calStart),e=new Date(s.getTime()+(pars
 /* stars (once) */
 (function(){const s=$('#stars');seed(99);for(let i=0;i<55;i++){const d=document.createElement('div');d.className='star';d.style.left=rnd()*100+'%';d.style.top=rnd()*62+'%';const z=rnd();d.style.width=d.style.height=(z>.85?2.6:1.6)+'px';d.style.setProperty('--o',(.45+rnd()*.55).toFixed(2));d.style.setProperty('--d',(-rnd()*2.4)+'s');s.appendChild(d)}})();
 
-const BUILD='1020123159';
+const BUILD='1020123747';
 (function(){if(PREVIEW)return;fetch(location.pathname+'?cb='+Date.now(),{cache:'no-store'}).then(r=>r.text()).then(t=>{const m=t.match(/const BUILD='([^']+)'/);if(m&&m[1]!==BUILD&&!sessionStorage.getItem('rl'+m[1])){sessionStorage.setItem('rl'+m[1],'1');location.replace(location.pathname+'?b='+m[1])}}).catch(()=>{})})();
 let W=nowWin();fill();scene(W);
 /* 1. departures board — cuisine */
@@ -424,16 +424,16 @@ function cabin(s){
   s.querySelector('#lk').onclick=function(){this.style.opacity=0;const w=W[Math.round(v*4)];card('cabin',w,'noted. the crew will set the mood.',`cabin lights set to: ${w}.`)};
 }
 const GAMES={departures:{fn:departures,key:'meal'},trolley:{fn:trolley,key:'dessert'},cabin:{fn:cabin,key:'cabin'}};
-let ANS={};try{ANS=JSON.parse(localStorage.getItem('thu.ans')||'{}')}catch(_){}
-function saveAns(){if(!PREVIEW)try{localStorage.setItem('thu.ans',JSON.stringify(ANS))}catch(_){}}
+let ANS={};try{ANS=JSON.parse(localStorage.getItem('thu3.ans')||'{}')}catch(_){}
+function saveAns(){if(!PREVIEW)try{localStorage.setItem('thu3.ans',JSON.stringify(ANS))}catch(_){}}
 function showPrefs(){const L=[];if(ANS.meal)L.push(`in-flight meal: <b>${ANS.meal}</b>`);if(ANS.dessert)L.push(`dessert: <b>${ANS.dessert}</b>`);if(ANS.cabin)L.push(`cabin: <b>${ANS.cabin}</b>`);
   const p=$('#prefs');p.innerHTML=L.join(' · ');p.style.display=L.length?'block':'none';if(opened&&$('#pass').classList.contains('on'))fit()}
 let GK=null;
 function msg(){}
 function card(lab,big,sub,txt){const gs=$('#gs');const c=document.createElement('div');c.className='card';c.innerHTML=`<div class="lab">${lab}</div><div class="big">${big}</div><div class="sub">${sub}</div><button class="send">tell sai</button>`;gs.appendChild(c);
   requestAnimationFrame(()=>requestAnimationFrame(()=>c.classList.add('on')));
-  ANS[GAMES[GK].key]=String(big).replace(/&#39;|'/g,"'");saveAns();showPrefs();
-  c.querySelector('.send').onclick=()=>{closeGame();sendMsg(txt)};$('#gx').textContent='done'}
+  const val=String(big).replace(/&#39;/g,"'"),key=GAMES[GK].key;
+  c.querySelector('.send').onclick=()=>{ANS[key]=val;saveAns();showPrefs();closeGame();sendMsg(txt)};$('#gx').textContent='done'}
 function fitGame(){const k=Math.min((innerWidth-20)/272,(innerHeight-70)/542,1.5);$('#gs').style.transform=`scale(${k.toFixed(3)})`}
 function openGame(name){GK=name;const gm=$('#gm'),gs=$('#gs');gm.classList.add('on');fitGame();requestAnimationFrame(()=>gm.classList.add('vis'));gs.innerHTML='';if(gs._iv)clearInterval(gs._iv);GAMES[name].fn(gs);const kk=gs.querySelector('.kick');if(kk)kk.textContent=W.kicker}
 function closeGame(){const gm=$('#gm');gm.classList.remove('vis');const gs=$('#gs');if(gs._iv)clearInterval(gs._iv);setTimeout(()=>{gm.classList.remove('on');gs.innerHTML=''},600)}
@@ -446,16 +446,16 @@ function pendingGame(){ // current window's game, else earliest earlier unanswer
 showPrefs();
 {const pg=pendingGame();if(pg)setTimeout(()=>{try{openGame(pg)}catch(e){__E.push('openGame: '+e.message)}},PREVIEW?400:900)}
 if(qs.has('dbg')){setTimeout(()=>{const d=document.createElement('div');d.style.cssText='position:fixed;left:8px;right:8px;top:8px;z-index:999;background:#000c;color:#9f9;font:11px/1.4 monospace;padding:8px;border-radius:8px;white-space:pre-wrap';
-  let a='';try{a=localStorage.getItem('thu.ans')}catch(e){a='ls err '+e.message}
+  let a='';try{a=localStorage.getItem('thu3.ans')}catch(e){a='ls err '+e.message}
   d.textContent=`build ${BUILD}\nwindow ${W.id} ${W.kicker}\ngame ${W.game} pending ${pendingGame()}\nans ${a}\ngm ${$('#gm').className}\nerrors ${JSON.stringify(__E)}\n${navigator.userAgent}`;
-  const b=document.createElement('button');b.textContent='reset my answers';b.onclick=()=>{localStorage.removeItem('thu.ans');location.replace(location.pathname+'?r='+Date.now())};d.appendChild(document.createElement('br'));d.appendChild(b);document.body.appendChild(d)},2500)}
+  const b=document.createElement('button');b.textContent='reset my answers';b.onclick=()=>{localStorage.removeItem('thu3.ans');location.replace(location.pathname+'?r='+Date.now())};d.appendChild(document.createElement('br'));d.appendChild(b);document.body.appendChild(d)},2500)}
 if(PREVIEW){const pv=$('#pv'),n=W.id,last=S.windows.length-1;pv.style.display='block';pv.innerHTML=`${n>0?`<a href="?w=${n-1}&k=${C.previewKey}">‹</a>`:''} preview · ${n+1}/${last+1} · ${W.kicker} ${n<last?`<a href="?w=${n+1}&k=${C.previewKey}">›</a>`:''}`}
 let visits=0;try{visits=+(localStorage.getItem('thu.visits')||0);if(!PREVIEW){visits++;localStorage.setItem('thu.visits',String(visits))}}catch(_){}
 if(PREVIEW&&qs.has('v'))visits=+qs.get('v');
-let wbSeen=null;try{wbSeen=localStorage.getItem('thu.wb')}catch(_){}
+let wbSeen=null;try{wbSeen=localStorage.getItem('thu3.wb')}catch(_){}
 const hasGame=(()=>{try{return !!pendingGame()}catch(_){return false}})();
 const FF=visits>=3&&(PREVIEW?qs.has('v'):(wbSeen!==String(W.id)&&!hasGame));
-if(FF&&!PREVIEW)try{localStorage.setItem('thu.wb',String(W.id))}catch(_){}
+if(FF&&!PREVIEW)try{localStorage.setItem('thu3.wb',String(W.id))}catch(_){}
 const FFB=visits>=3;
 $('#shade').style.display='none';$('#hint').style.display='none';
 requestAnimationFrame(()=>{opened=true;
