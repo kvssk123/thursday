@@ -356,7 +356,7 @@ $('#cal').onclick=()=>{const s=new Date(C.calStart),e=new Date(s.getTime()+(pars
 /* stars (once) */
 (function(){const s=$('#stars');seed(99);for(let i=0;i<55;i++){const d=document.createElement('div');d.className='star';d.style.left=rnd()*100+'%';d.style.top=rnd()*62+'%';const z=rnd();d.style.width=d.style.height=(z>.85?2.6:1.6)+'px';d.style.setProperty('--o',(.45+rnd()*.55).toFixed(2));d.style.setProperty('--d',(-rnd()*2.4)+'s');s.appendChild(d)}})();
 
-const BUILD='1020122144';
+const BUILD='1020123159';
 (function(){if(PREVIEW)return;fetch(location.pathname+'?cb='+Date.now(),{cache:'no-store'}).then(r=>r.text()).then(t=>{const m=t.match(/const BUILD='([^']+)'/);if(m&&m[1]!==BUILD&&!sessionStorage.getItem('rl'+m[1])){sessionStorage.setItem('rl'+m[1],'1');location.replace(location.pathname+'?b='+m[1])}}).catch(()=>{})})();
 let W=nowWin();fill();scene(W);
 /* 1. departures board — cuisine */
@@ -444,7 +444,7 @@ function pendingGame(){ // current window's game, else earliest earlier unanswer
   const cur=cand.find(w=>w.id===W.id);return (cur||cand[0]||{}).game||null}
 
 showPrefs();
-{const pg=pendingGame();if(pg)setTimeout(()=>{try{openGame(pg)}catch(e){__E.push('openGame: '+e.message)}},PREVIEW?400:1600)}
+{const pg=pendingGame();if(pg)setTimeout(()=>{try{openGame(pg)}catch(e){__E.push('openGame: '+e.message)}},PREVIEW?400:900)}
 if(qs.has('dbg')){setTimeout(()=>{const d=document.createElement('div');d.style.cssText='position:fixed;left:8px;right:8px;top:8px;z-index:999;background:#000c;color:#9f9;font:11px/1.4 monospace;padding:8px;border-radius:8px;white-space:pre-wrap';
   let a='';try{a=localStorage.getItem('thu.ans')}catch(e){a='ls err '+e.message}
   d.textContent=`build ${BUILD}\nwindow ${W.id} ${W.kicker}\ngame ${W.game} pending ${pendingGame()}\nans ${a}\ngm ${$('#gm').className}\nerrors ${JSON.stringify(__E)}\n${navigator.userAgent}`;
@@ -452,11 +452,16 @@ if(qs.has('dbg')){setTimeout(()=>{const d=document.createElement('div');d.style.
 if(PREVIEW){const pv=$('#pv'),n=W.id,last=S.windows.length-1;pv.style.display='block';pv.innerHTML=`${n>0?`<a href="?w=${n-1}&k=${C.previewKey}">‹</a>`:''} preview · ${n+1}/${last+1} · ${W.kicker} ${n<last?`<a href="?w=${n+1}&k=${C.previewKey}">›</a>`:''}`}
 let visits=0;try{visits=+(localStorage.getItem('thu.visits')||0);if(!PREVIEW){visits++;localStorage.setItem('thu.visits',String(visits))}}catch(_){}
 if(PREVIEW&&qs.has('v'))visits=+qs.get('v');
-const FF=visits>=3;
+let wbSeen=null;try{wbSeen=localStorage.getItem('thu.wb')}catch(_){}
+const hasGame=(()=>{try{return !!pendingGame()}catch(_){return false}})();
+const FF=visits>=3&&(PREVIEW?qs.has('v'):(wbSeen!==String(W.id)&&!hasGame));
+if(FF&&!PREVIEW)try{localStorage.setItem('thu.wb',String(W.id))}catch(_){}
+const FFB=visits>=3;
 $('#shade').style.display='none';$('#hint').style.display='none';
 requestAnimationFrame(()=>{opened=true;
-  if(FF){setTimeout(()=>$('#wb').classList.add('on'),300);setTimeout(()=>$('#wb').classList.remove('on'),2600);setTimeout(()=>{$('#sky').classList.add('on');$('#alti').classList.add('on')},3800);setTimeout(()=>$('#ff').classList.add('on'),2000)}
-  else setTimeout(()=>{$('#sky').classList.add('on');$('#alti').classList.add('on')},300);
+  if(FF){setTimeout(()=>$('#wb').classList.add('on'),300);setTimeout(()=>$('#wb').classList.remove('on'),2600);setTimeout(()=>{$('#sky').classList.add('on');$('#alti').classList.add('on')},3800);}
+  if(FFB)setTimeout(()=>$('#ff').classList.add('on'),FF?2000:1200);
+  if(!FF)setTimeout(()=>{$('#sky').classList.add('on');$('#alti').classList.add('on')},300);
   if(['night','blue','dawn'].includes(W.phase))setTimeout(()=>$('#shoot').classList.add('go'),2600);
   setTimeout(()=>{$('#pass').classList.add('on');document.body.classList.add('passup');fit()},1100)});
 function recheck(){if(PREVIEW)return;const n=nowWin();if(n.id!==W.id)location.reload()}
