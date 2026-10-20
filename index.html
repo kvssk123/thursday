@@ -76,6 +76,8 @@ body.passup .hint{opacity:0}
 .ph{display:flex;justify-content:space-between;align-items:center;padding:16px 20px 0;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);font-weight:500}
 .ph b{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:0;text-transform:none;font-size:15px;color:var(--ink)}
 .status{padding:6px 20px 0;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#6f7d72;font-weight:500;display:flex;align-items:center;gap:7px}
+.ff{margin-left:4px;padding:2px 7px;border-radius:999px;border:1px solid #c9a961;color:#9a7b3a;letter-spacing:1.6px;font-size:9px;opacity:0;transition:opacity 1.2s}
+.ff.on{opacity:1}
 .status i{width:6px;height:6px;border-radius:50%;background:#7d9a83;box-shadow:0 0 0 3px rgba(125,154,131,.18)}
 .route{display:flex;align-items:flex-end;justify-content:space-between;padding:8px 20px 20px}
 .route .c{font-family:var(--serif);font-weight:300;font-size:40px;line-height:1;letter-spacing:1px}
@@ -128,6 +130,7 @@ body.passup .hint{opacity:0}
   <div class="bezel"><div class="ring"><div class="glass" id="glass">
     <div class="skyfill" id="skyfill"></div><div id="stars"></div><div class="moon" id="moon"></div><div class="shoot" id="shoot"></div>
     <div class="sun" id="sun"></div><div class="ground" id="ground"></div><div id="clouds"></div><div class="sea" id="sea"></div>
+    <div class="skytext" id="wb"><span>welcome back.</span></div>
     <div class="skytext" id="sky"><span id="l1"></span><br><span id="l2"></span></div>
     <div class="wing" id="wing"><i></i></div>
     <div class="shade" id="shade"><div class="lip"><i></i></div></div>
@@ -139,7 +142,7 @@ body.passup .hint{opacity:0}
 <div class="pass" id="pass">
   <div class="mk ring1" id="mk2"></div>
   <div class="ph"><span>boarding pass</span><b data-c="airline"></b></div>
-  <div class="status"><i></i><span id="status"></span></div>
+  <div class="status"><i></i><span id="status"></span><span class="ff" id="ff">frequent flyer</span></div>
   <div class="route">
     <div><div class="c" data-c="fromCode"></div><small data-c="fromName"></small></div>
     <div class="mid" id="mid"></div>
@@ -269,8 +272,13 @@ $('#cal').onclick=()=>{const s=new Date(C.calStart),e=new Date(s.getTime()+(pars
 
 let W=nowWin();fill();scene(W);
 if(PREVIEW){const pv=$('#pv'),n=W.id,last=S.windows.length-1;pv.style.display='block';pv.innerHTML=`${n>0?`<a href="?w=${n-1}&k=${C.previewKey}">‹</a>`:''} preview · ${n+1}/${last+1} · ${W.kicker} ${n<last?`<a href="?w=${n+1}&k=${C.previewKey}">›</a>`:''}`}
+let visits=0;try{visits=+(localStorage.getItem('thu.visits')||0);if(!PREVIEW){visits++;localStorage.setItem('thu.visits',String(visits))}}catch(_){}
+if(PREVIEW&&qs.has('v'))visits=+qs.get('v');
+const FF=visits>=3;
 $('#shade').style.display='none';$('#hint').style.display='none';
-requestAnimationFrame(()=>{opened=true;setTimeout(()=>{$('#sky').classList.add('on');$('#alti').classList.add('on')},300);
+requestAnimationFrame(()=>{opened=true;
+  if(FF){setTimeout(()=>$('#wb').classList.add('on'),300);setTimeout(()=>$('#wb').classList.remove('on'),2600);setTimeout(()=>{$('#sky').classList.add('on');$('#alti').classList.add('on')},3800);setTimeout(()=>$('#ff').classList.add('on'),2000)}
+  else setTimeout(()=>{$('#sky').classList.add('on');$('#alti').classList.add('on')},300);
   if(['night','blue','dawn'].includes(W.phase))setTimeout(()=>$('#shoot').classList.add('go'),2600);
   setTimeout(()=>{$('#pass').classList.add('on');document.body.classList.add('passup');fit()},1100)});
 function recheck(){if(PREVIEW)return;const n=nowWin();if(n.id!==W.id)location.reload()}
