@@ -260,9 +260,148 @@ window.__E=[];addEventListener('error',e=>{__E.push((e.message||'')+' @'+(e.line
 if(/[?&]reset=1/.test(location.search)){try{Object.keys(localStorage).filter(k=>k.startsWith('thu')).forEach(k=>localStorage.removeItem(k));sessionStorage.clear()}catch(_){}
   ['thu3ans','thu4ans'].forEach(n=>document.cookie=n+'=;path=/thursday;max-age=0');location.replace(location.pathname+'?r='+Date.now())}
 </script>
+<script>window.XG=[];</script>
+<script>
+window.XG.push({
+n:'👗 Dress code',
+t:'Dress code',
+w:'Tue 11 pm · dress code',
+d:'Three quick screens: her outfit, her colour, and which shirt Sai should wear.',
+css:`
+.mu-dots{position:absolute;top:10px;left:0;right:0;display:flex;justify-content:center;gap:6px}
+.mu-dots i{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.18);transition:all .3s}
+.mu-dots i.on{background:#ffd58a;width:14px;border-radius:3px}
+.mu-back{position:absolute;top:4px;left:4px;border:none;background:none;color:#8f88a0;font:500 11px Inter,sans-serif;padding:6px;cursor:pointer;opacity:0;pointer-events:none;transition:opacity .3s}
+.mu-back.on{opacity:1;pointer-events:auto}
+.mu-sub{position:absolute;top:96px;left:0;right:0;text-align:center;font-size:9px;letter-spacing:2.5px;text-transform:uppercase;color:#8f88a0}
+.mu-scr{position:absolute;left:0;right:0;top:118px;bottom:0;transition:opacity .35s,transform .45s cubic-bezier(.2,1,.3,1)}
+.mu-scr.out{opacity:0;transform:translateX(-30px);pointer-events:none}
+.mu-scr.in{opacity:0;transform:translateX(30px)}
+.mu-grid{position:absolute;left:16px;right:16px;top:8px;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.mu-t{background:#fbf8f3;border-radius:16px;height:150px;position:relative;cursor:pointer;transition:transform .2s,box-shadow .2s;box-shadow:0 8px 18px -10px rgba(0,0,0,.6)}
+.mu-6{top:0;gap:8px}.mu-6 .mu-t:last-child:nth-child(odd){grid-column:1/3;width:calc(50% - 4px);justify-self:center}.mu-6 .mu-t{height:118px}.mu-6 .mu-t svg{top:8px}.mu-6 .mu-t b{bottom:8px;font-size:14px}
+.mu-shirts{top:226px;grid-template-columns:repeat(7,1fr);left:20px;right:20px}.mu-shirts i{width:24px;height:24px;position:relative}.mu-mt em{position:absolute;top:28px;left:50%;transform:translateX(-50%);font:500 7.5px Inter,sans-serif;letter-spacing:1px;text-transform:uppercase;color:#8f88a0;font-style:normal}.mu-sn{top:274px}
+.mu-t:active{transform:scale(.96)}
+.mu-t.on{box-shadow:0 0 0 2px #1a1924,0 0 0 4px #ffd58a}
+.mu-t svg{position:absolute;left:50%;top:12px;transform:translateX(-50%);overflow:visible}
+.mu-t b{position:absolute;left:0;right:0;bottom:10px;text-align:center;font:italic 300 15px Fraunces,Georgia,serif;color:#2a2733}
+.mu-t small{position:absolute;left:0;right:0;bottom:-1px;text-align:center;font-size:8px;letter-spacing:1.5px;text-transform:uppercase;color:#a39c94}
+.mu-big{position:absolute;left:50%;top:0;width:150px;height:220px;margin-left:-75px;display:flex;align-items:center;justify-content:center}
+.mu-big svg{overflow:visible;filter:drop-shadow(0 12px 14px rgba(0,0,0,.45))}
+.mu-big svg *{transition:fill .4s}
+.mu-nm{position:absolute;left:0;right:0;top:228px;text-align:center;font:italic 300 19px Fraunces,Georgia,serif;color:#efe9f6;height:24px}
+.mu-sw{position:absolute;left:30px;right:30px;top:266px;display:grid;grid-template-columns:repeat(5,1fr);gap:12px 0;justify-items:center}
+.mu-sw i{width:26px;height:26px;border-radius:50%;cursor:pointer;box-shadow:0 0 0 2px rgba(255,255,255,.14);transition:box-shadow .2s,transform .2s}
+.mu-sw i.on{box-shadow:0 0 0 2px #1a1924,0 0 0 4px #ffd58a;transform:scale(1.08)}
+.mu-go{position:absolute;left:50%;bottom:26px;transform:translateX(-50%);border:1px solid rgba(242,182,90,.6);background:rgba(242,182,90,.08);color:#ffd58a;border-radius:999px;padding:10px 30px;font:500 11px Inter,sans-serif;letter-spacing:2.5px;text-transform:uppercase;cursor:pointer;transition:opacity .3s}
+.mu-go[disabled]{opacity:.25;pointer-events:none}
+.mu-pair{position:absolute;left:16px;right:16px;top:6px;height:200px;display:flex;gap:10px}
+.mu-pair>div{flex:1;background:#fbf8f3;border-radius:16px;position:relative}
+.mu-pair .who{position:absolute;top:9px;left:0;right:0;text-align:center;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:#8d8794}
+.mu-pair svg{position:absolute;left:50%;top:26px;transform:translateX(-50%);overflow:visible}
+.mu-pair svg *{transition:fill .45s}
+.mu-pair .cap{position:absolute;bottom:9px;left:4px;right:4px;text-align:center;font:italic 300 12.5px Fraunces,Georgia,serif;color:#2a2733}
+.mu-opts{position:absolute;left:24px;right:24px;top:222px;display:flex;flex-direction:column;gap:8px}
+.mu-o{border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.04);color:#efe9f6;border-radius:14px;padding:10px 14px;text-align:left;font:italic 300 15px Fraunces,Georgia,serif;cursor:pointer;transition:all .2s}
+.mu-o span{display:block;font:400 9.5px Inter,sans-serif;font-style:normal;letter-spacing:1px;color:#8f88a0;margin-top:1px}
+.mu-o.on{border-color:#ffd58a;background:rgba(242,182,90,.12)}
+`,
+f:function(s){
+  const COL=[['black','#2b2b31'],['white','#f7f4ee'],['beige','#dcc6a3'],['baby blue','#a9cdf2'],['royal blue','#2f62d6'],
+             ['navy','#24336b'],['blush pink','#f6c3cd'],['rose pink','#e45b8e'],['red','#d1222f'],['lavender','#b9a6e6']];
+  const sh=(hex,a)=>{const n=parseInt(hex.slice(1),16);let r=n>>16,g=n>>8&255,b=n&255;
+    const f=v=>Math.max(0,Math.min(255,Math.round(a<0?v*(1+a):v+(255-v)*a)));return '#'+[f(r),f(g),f(b)].map(x=>x.toString(16).padStart(2,'0')).join('')};
+  let gid=0;
+  const grad=c=>{const id='mug'+(gid++);return [`<defs><linearGradient id="${id}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${sh(c,.35)}"/><stop offset=".5" stop-color="${c}"/><stop offset="1" stop-color="${sh(c,-.28)}"/></linearGradient></defs>`,`url(#${id})`]};
+  const edge=c=>c==='#f7f4ee'?' stroke="#d8cfbf" stroke-width=".8"':'';
+  /* her outfits (viewBox 0 0 60 120) */
+  const HER={
+    casual:c=>{const[d,F]=grad(c);return `${d}<path d="M14 12 L24 7 Q30 12 36 7 L46 12 L54 26 L46 31 L44 25 L44 50 L16 50 L16 25 L14 31 L6 26 Z" fill="${F}"${edge(c)}/>
+      <path d="M17 52 L43 52 L45 112 L33 112 L30 66 L27 112 L15 112 Z" fill="#5a7fb0"/><path d="M17 52 L43 52 L43.3 58 L16.7 58 Z" fill="#4c6e9c"/><path d="M30 66 L30 58" stroke="#476791" stroke-width=".8"/>`},
+    frock:c=>{const[d,F]=grad(c);return `${d}<path d="M23 4 L22 14 M37 4 L38 14" stroke="${sh(c,-.3)}" stroke-width="1.4"/>
+      <path d="M21 14 Q30 19 39 14 L41 40 Q52 80 56 112 Q30 120 4 112 Q8 80 19 40 Z" fill="${F}"${edge(c)}/>
+      <path d="M19.5 40 Q30 44 40.5 40" stroke="${sh(c,-.25)}" stroke-width="1.2" fill="none"/><path d="M24 48 Q20 80 15 110 M36 48 Q40 80 45 110" stroke="${sh(c,-.2)}" stroke-width=".7" fill="none" opacity=".6"/>`},
+    skirt:c=>{const[d,F]=grad(c);const t=sh(c,.55);return `${d}<path d="M18 10 L25 7 Q30 11 35 7 L42 10 L48 22 L43 25 L41 21 L41 44 L19 44 L19 21 L17 25 L12 22 Z" fill="${t}" stroke="${sh(c,-.1)}" stroke-width=".6"/>
+      <path d="M19 45 L41 45 Q50 78 54 104 Q30 110 6 104 Q10 78 19 45 Z" fill="${F}"${edge(c)}/><path d="M19 45 L41 45 L41.5 49 L18.5 49 Z" fill="${sh(c,-.2)}"/>
+      <path d="M25 52 Q21 78 16 102 M35 52 Q39 78 44 102 M30 52 L30 104" stroke="${sh(c,-.22)}" stroke-width=".7" fill="none" opacity=".55"/>`},
+    jumpsuit:c=>{const[d,F]=grad(c);return `${d}<path d="M23 4 L22 14 M37 4 L38 14" stroke="${sh(c,-.3)}" stroke-width="1.4"/>
+      <path d="M21 14 Q30 20 39 14 L41 42 Q46 75 50 112 L34 112 L30 62 L26 112 L10 112 Q14 75 19 42 Z" fill="${F}"${edge(c)}/>
+      <path d="M19 42 Q30 46 41 42 L41 46 Q30 50 19 46 Z" fill="${sh(c,-.25)}"/><path d="M30 62 L30 50" stroke="${sh(c,-.2)}" stroke-width=".7"/>`},
+    coord:c=>{const[d,F]=grad(c);return `${d}<path d="M16 12 L24 8 Q30 12 36 8 L44 12 L52 24 L45 28 L43 23 L43 38 L17 38 L17 23 L15 28 L8 24 Z" fill="${F}"${edge(c)}/>
+      <path d="M18 44 L42 44 Q47 80 50 112 L34 112 L30 64 L26 112 L10 112 Q13 80 18 44 Z" fill="${F}"${edge(c)}/><path d="M18 44 L42 44 L42.4 48 L17.6 48 Z" fill="${sh(c,-.2)}"/>
+      <path d="M30 64 L30 48" stroke="${sh(c,-.2)}" stroke-width=".7"/>`}};
+  /* his outfits (viewBox 0 0 60 120); m = match colour or null, hint = accent only */
+  const HIM={
+    shirt:(m,h)=>{const c=m&&!h?m:'#f4f1ea';const[d,F]=grad(c);return `${d}<path d="M14 12 L24 7 L30 14 L36 7 L46 12 L54 34 L47 37 L44 28 L44 56 L16 56 L16 28 L13 37 L6 34 Z" fill="${F}" stroke="#d8cfbf" stroke-width=".7"/>
+      <path d="M24 7 L30 18 L36 7" fill="none" stroke="${sh(c,-.2)}" stroke-width="1"/><path d="M30 18 L30 56" stroke="${sh(c,-.15)}" stroke-width=".7"/>
+      ${h?`<path d="M34 24 L40 24 L40 30 L34 30 Z" fill="${sh(c,-.05)}" stroke="${sh(c,-.15)}" stroke-width=".6"/><path d="M34.5 24 L36 20 L37.5 23 L39 20 L39.5 24 Z" fill="${m}"/>`:''}
+      <path d="M17 57 L43 57 L45 114 L33 114 L30 70 L27 114 L15 114 Z" fill="#34363f"/>`},
+  };
+  const HERL={casual:['casual & cute','jeans, comfy'],frock:['a frock','the twirly kind'],skirt:['skirt & top',''],jumpsuit:['a jumpsuit',''],coord:['a co-ord set','']};
+  const st={her:null,col:null,sc:null};
+  s.innerHTML=`<div class="mu-dots"><i></i><i></i><i></i></div><button class="mu-back">‹ back</button>
+    <div class="kick"></div><div class="prompt"></div><div class="mu-sub"></div><div class="mu-stage"></div>`;
+  const P=s.querySelector('.prompt'),SUB=s.querySelector('.mu-sub'),STG=s.querySelector('.mu-stage'),BK=s.querySelector('.mu-back'),DOTS=[...s.querySelectorAll('.mu-dots i')];
+  let step=0;
+  const svg=(w,h,inner)=>`<svg width="${w}" height="${h}" viewBox="0 0 60 120">${inner}</svg>`;
+  function show(n,html,prompt,sub){
+    step=n;DOTS.forEach((d,i)=>d.classList.toggle('on',i===n));BK.classList.toggle('on',n>0);
+    P.innerHTML=prompt;SUB.textContent=sub||'';
+    const old=STG.querySelector('.mu-scr');if(old){old.classList.add('out');setTimeout(()=>old.remove(),400)}
+    const d=document.createElement('div');d.className='mu-scr in';d.innerHTML=html;STG.appendChild(d);
+    requestAnimationFrame(()=>requestAnimationFrame(()=>d.classList.remove('in')));return d}
+  const colName=()=>COL[st.col][0],colHex=()=>COL[st.col][1];
+  function s1(){
+    const d=show(0,`<div class="mu-grid mu-6">${Object.keys(HER).map(k=>`<div class="mu-t ${st.her===k?'on':''}" data-k="${k}">${svg(56,112,HER[k]('#d6cfe6'))}<b>${HERL[k][0]}</b></div>`).join('')}</div>`,
+      'dress code: princess.<br>but first, the vibe.','step 1 · you');
+    d.querySelectorAll('.mu-t').forEach(t=>t.onclick=()=>{st.her=t.dataset.k;d.querySelectorAll('.mu-t').forEach(x=>x.classList.toggle('on',x===t));setTimeout(s2,320)});
+    d.querySelectorAll('.mu-t svg').forEach(v=>{v.setAttribute('height','78');v.setAttribute('width','39')})}
+  function s2(){
+    if(st.col==null)st.col=-1;
+    const d=show(1,`<div class="mu-big">${svg(110,210,HER[st.her](st.col<0?'#cfc8dc':colHex()))}</div><div class="mu-nm">${st.col<0?'':colName()}</div>
+      <div class="mu-sw">${COL.map((c,i)=>`<i data-i="${i}" class="${i===st.col?'on':''}" style="background:${c[1]}"></i>`).join('')}</div>
+      <button class="mu-go" ${st.col<0?'disabled':''}>next</button>`,
+      st.her==='secret'?'keeping secrets.<br>just the colour, then?':'and the colour?','step 2 · you');
+    d.querySelectorAll('.mu-sw i').forEach(t=>t.onclick=()=>{st.col=+t.dataset.i;
+      d.querySelectorAll('.mu-sw i').forEach(x=>x.classList.toggle('on',x===t));
+      d.querySelector('.mu-big').innerHTML=svg(110,210,HER[st.her](colHex()));d.querySelector('.mu-nm').textContent=colName();
+      d.querySelector('.mu-go').disabled=false});
+    d.querySelector('.mu-go').onclick=s3}
+  const SH=[['dark maroon','#5e1a2a'],['light blue','#bcd6ef'],['white','#f7f4ee'],['black','#26262c'],['navy','#24336b'],['olive','#5f6b3a']];
+  const shirtHex=()=>st.sc==='match'?colHex():SH[st.sc][1];
+  const shirtName=()=>st.sc==='match'?colName()+', to match you':SH[st.sc][0];
+  const HERCAP=()=>st.her==='secret'?'a '+colName()+' secret':colName()+' '+({casual:'casual',frock:'frock',skirt:'skirt & top',jumpsuit:'jumpsuit',coord:'co-ord'})[st.her];
+  function s3(){
+    const cur=st.sc==null?'#d9d3c8':shirtHex();
+    const d=show(2,`<div class="mu-pair"><div><div class="who">you</div>${svg(66,132,HER[st.her](colHex()))}<div class="cap">${HERCAP()}</div></div>
+      <div><div class="who">sai</div><span class="mu-him">${svg(66,132,HIM.shirt(cur,false))}</span><div class="cap mu-hc">${st.sc==null?'shirt & pants':shirtName()}</div></div></div>
+      <div class="mu-sw mu-shirts">${SH.map((c,i)=>`<i data-i="${i}" class="${st.sc===i?'on':''}" style="background:${c[1]}"></i>`).join('')}<i data-i="match" class="mu-mt ${st.sc==='match'?'on':''}" style="background:${colHex()}"><em>match</em></i></div>
+      <div class="mu-nm mu-sn">${st.sc==null?'':shirtName()}</div>
+      <button class="mu-go" ${st.sc==null?'disabled':''}>this one</button>`,
+      'your turn.<br>which shirt should sai wear?','step 3 · him · no pressure');
+    d.querySelectorAll('.mu-shirts i').forEach(t=>t.onclick=()=>{st.sc=t.dataset.i==='match'?'match':+t.dataset.i;
+      d.querySelectorAll('.mu-shirts i').forEach(x=>x.classList.toggle('on',x===t));
+      d.querySelector('.mu-him').innerHTML=svg(66,132,HIM.shirt(shirtHex(),false));
+      d.querySelector('.mu-hc').textContent=shirtName();d.querySelector('.mu-sn').textContent=shirtName();
+      d.querySelector('.mu-go').disabled=false});
+    d.querySelector('.mu-go').onclick=finish}
+  function finish(){
+    const her=st.her==='secret'?`${colName()}, the rest is a surprise`:`${colName()} ${({casual:'casual',frock:'frock',skirt:'skirt & top',jumpsuit:'jumpsuit',coord:'co-ord set'})[st.her]}`;
+    const shirt=st.sc==='match'?`a ${colName()} shirt, to match`:`the ${SH[st.sc][0]} shirt`;
+    const LINES={0:'dark maroon. good choice. very autumn.',1:'light blue it is. calm, like the sky.',2:'white. classic. no pressure on the dessert.',3:'black. mysterious. noted.',4:'navy. like the night sky on your page.',5:'olive. bold. trusting you on this.'};
+    const line=st.sc==='match'?'matching. people will talk.':LINES[st.sc];
+    const big=st.her==='secret'?colName()+' · surprise':her;
+    s.querySelector('.mu-go').style.opacity=0;s.querySelector('.mu-shirts').style.opacity=0;s.querySelector('.mu-sn').style.opacity=0;BK.classList.remove('on');
+    setTimeout(()=>card('dress code',big,`you: ${her}.<br>me: ${shirt}.<br>${line}`,`dress code 🫣\nme: ${her}\nyou: ${shirt}`),300)}
+  BK.onclick=()=>[s1,s1,s2][step]();
+  s1();
+}});
+
+</script>
+<script>document.head.insertAdjacentHTML('beforeend','<style>'+XG.map(g=>g.css).join('\n')+'</style>')</script>
 <script>
 const C={"airline": "dinner with sai", "fromCode": "YOU", "fromName": "your place", "toCode": "US", "toName": "somewhere with good dessert", "herName": "my bujji bangaram", "date": "thu, oct 22", "time": "7:00 pm", "seat": "10-18 · window", "gate": "your door, 6:45", "cls": "just us", "checkedIn": "it's a date 🫣", "stamp": "confirmed", "senderName": "sai", "imessage": "+15715858909", "whatsapp": "", "calTitle": "Dinner with Sai", "calStart": "2026-10-22T19:00", "calHours": "3", "marginNote": "princess attire. no exceptions.", "replyText": "looking forward to thursday 🫣", "previewKey": "6a"};
-const S=JSON.parse(new TextDecoder().decode(Uint8Array.from(atob("eyJ3aW5kb3dzIjogW3siaWQiOiAwLCAiYXQiOiAiMjAyNi0xMC0yMFQxMTowMDowMC0wNDowMCIsICJraWNrZXIiOiAidHVlc2RheSDCtyBsYXRlIG1vcm5pbmciLCAibDEiOiAiYW4gb3JkaW5hcnkgdHVlc2RheSwiLCAibDIiOiAic2xpZ2h0bHkgYmV0dGVyLiIsICJzdGF0dXMiOiAiYm9hcmRpbmcgaW4gMiBkYXlzIiwgInBoYXNlIjogImRheSIsICJhbHQiOiAwLCAibWFya3MiOiAwLCAiZ2FtZSI6ICJkZXBhcnR1cmVzIn0sIHsiaWQiOiAxLCAiYXQiOiAiMjAyNi0xMC0yMFQxNzowMDowMC0wNDowMCIsICJraWNrZXIiOiAidHVlc2RheSDCtyBnb2xkZW4gaG91ciIsICJsMSI6ICJzb2Z0IGxpZ2h0LiIsICJsMiI6ICJzaG9ydCB3ZWVrLiIsICJzdGF0dXMiOiAib24gdGltZSIsICJwaGFzZSI6ICJnb2xkZW4iLCAiYWx0IjogMCwgIm1hcmtzIjogMSwgImdhbWUiOiAidHJvbGxleSJ9LCB7ImlkIjogMiwgImF0IjogIjIwMjYtMTAtMjBUMjM6MDA6MDAtMDQ6MDAiLCAia2lja2VyIjogInR1ZXNkYXkgwrcgbmlnaHQiLCAibDEiOiAib25lIG5pZ2h0IGRvd24uIiwgImwyIjogInNsZWVwIHdlbGwuIiwgInN0YXR1cyI6ICIyIG5pZ2h0cyB0byBnbyIsICJwaGFzZSI6ICJuaWdodCIsICJhbHQiOiAxLCAibWFya3MiOiAyLCAiZ2FtZSI6ICJjYWJpbiJ9LCB7ImlkIjogMywgImF0IjogIjIwMjYtMTAtMjFUMDU6MDA6MDAtMDQ6MDAiLCAia2lja2VyIjogIndlZG5lc2RheSDCtyBmaXJzdCBsaWdodCIsICJsMSI6ICJoYWxmd2F5IHRoZXJlLiIsICJsMiI6ICJ0aGUgc2t5IGFncmVlcy4iLCAic3RhdHVzIjogIm9uIHNjaGVkdWxlIiwgInBoYXNlIjogImRhd24iLCAiYWx0IjogMSwgIm1hcmtzIjogM30sIHsiaWQiOiA0LCAiYXQiOiAiMjAyNi0xMC0yMVQxMTowMDowMC0wNDowMCIsICJraWNrZXIiOiAid2VkbmVzZGF5IMK3IG1pZGRheSIsICJsMSI6ICJkcmVzcyBjb2RlOiBwcmluY2Vzcy4iLCAibDIiOiAieW91IG93biBvbmUsIHJpZ2h0PyIsICJzdGF0dXMiOiAiZHJlc3MgY29kZTogcHJpbmNlc3MiLCAicGhhc2UiOiAiZGF5IiwgImFsdCI6IDIsICJtYXJrcyI6IDMsICJjdGEiOiAiaSBoYXZlIG9uZSIsICJyZXBseSI6ICJpIGhhdmUgb25lLiBvYnZpb3VzbHkuIn0sIHsiaWQiOiA1LCAiYXQiOiAiMjAyNi0xMC0yMVQxNzowMDowMC0wNDowMCIsICJraWNrZXIiOiAid2VkbmVzZGF5IMK3IGV2ZW5pbmciLCAibDEiOiAidGhpcyB0aW1lIHRvbW9ycm93LCIsICJsMiI6ICJhbG1vc3QuIiwgInN0YXR1cyI6ICJib2FyZGluZyB0b21vcnJvdyIsICJwaGFzZSI6ICJnb2xkZW4iLCAiYWx0IjogMiwgIm1hcmtzIjogNH0sIHsiaWQiOiA2LCAiYXQiOiAiMjAyNi0xMC0yMVQyMzowMDowMC0wNDowMCIsICJraWNrZXIiOiAid2VkbmVzZGF5IMK3IGxhdGUiLCAibDEiOiAib25lIG1vcmUgc2xlZXAuIiwgImwyIjogInRpYXJhIG9wdGlvbmFsLiIsICJzdGF0dXMiOiAiMSBuaWdodCB0byBnbyIsICJwaGFzZSI6ICJuaWdodCIsICJhbHQiOiAzLCAibWFya3MiOiA0fSwgeyJpZCI6IDcsICJhdCI6ICIyMDI2LTEwLTIyVDA1OjAwOjAwLTA0OjAwIiwgImtpY2tlciI6ICJ0aHVyc2RheSDCtyBlYXJseSIsICJsMSI6ICJnb29kIG1vcm5pbmcsIiwgImwyIjogInBhc3NlbmdlciAxMC0xOC4iLCAic3RhdHVzIjogInRvZGF5IiwgInBoYXNlIjogImRhd24iLCAiYWx0IjogMywgIm1hcmtzIjogNX0sIHsiaWQiOiA4LCAiYXQiOiAiMjAyNi0xMC0yMlQxMTowMDowMC0wNDowMCIsICJraWNrZXIiOiAidGh1cnNkYXkgwrcgbGF0ZSBtb3JuaW5nIiwgImwxIjogInRoZXJlIHdpbGwgYmUgZmxvd2Vycy4iLCAibDIiOiAiYWN0IHN1cnByaXNlZC4iLCAic3RhdHVzIjogImNhcmdvOiBmbG93ZXJzIChub3QgYSBzZWNyZXQpIiwgInBoYXNlIjogImRheSIsICJhbHQiOiA0LCAibWFya3MiOiA1LCAiY3RhIjogImknbGwgYWN0IHN1cnByaXNlZCIsICJyZXBseSI6ICJpJ2xsIGFjdCBzdXJwcmlzZWQuIn0sIHsiaWQiOiA5LCAiYXQiOiAiMjAyNi0xMC0yMlQxNzowMDowMC0wNDowMCIsICJraWNrZXIiOiAidGh1cnNkYXkgwrcgYWxtb3N0IiwgImwxIjogInNhdmUgcm9vbSIsICJsMiI6ICJmb3IgZGVzc2VydC4iLCAic3RhdHVzIjogInBpY2t1cCA2OjQ1IMK3IHlvdXIgZG9vciIsICJwaGFzZSI6ICJnb2xkZW4iLCAiYWx0IjogNSwgIm1hcmtzIjogNX0sIHsiaWQiOiAxMCwgImF0IjogIjIwMjYtMTAtMjJUMTg6NDU6MDAtMDQ6MDAiLCAia2lja2VyIjogIm5vdyBib2FyZGluZyIsICJsMSI6ICJsb29rIG91dHNpZGUuIiwgImwyIjogImknbSBoZXJlLiIsICJzdGF0dXMiOiAibm93IGJvYXJkaW5nIMK3IHNlYXQgMTAtMTgiLCAicGhhc2UiOiAiYmx1ZSIsICJhbHQiOiA2LCAibWFya3MiOiA2LCAic3RhbXAiOiAiYm9hcmRlZCIsICJjdGEiOiAiY29taW5nIGRvd24g8J+royIsICJyZXBseSI6ICJjb21pbmcgZG93biDwn6ujIn0sIHsiaWQiOiAxMSwgImF0IjogIjIwMjYtMTAtMjJUMjM6MDA6MDAtMDQ6MDAiLCAia2lja2VyIjogInRodXJzZGF5IMK3IGFmdGVyIiwgImwxIjogInRoYW5rIHlvdSIsICJsMiI6ICJmb3IgdG9uaWdodC4iLCAic3RhdHVzIjogImxhbmRlZCIsICJwaGFzZSI6ICJuaWdodCIsICJhbHQiOiA2LCAibWFya3MiOiA2LCAic3RhbXAiOiAibGFuZGVkIiwgInJlcGx5IjogInRoYW5rIHlvdSBmb3IgdG9uaWdodC4iLCAiYWZ0ZXIiOiB0cnVlfSwgeyJpZCI6IDEyLCAiYXQiOiAiMjAyNi0xMC0yM1QwODowMDowMC0wNDowMCIsICJraWNrZXIiOiAiZnJpZGF5IMK3IG1vcm5pbmciLCAibDEiOiAic3RpbGwgdGhpbmtpbmciLCAibDIiOiAiYWJvdXQgZGVzc2VydC4iLCAic3RhdHVzIjogIm5leHQgZmxpZ2h0OiB3aGVuZXZlciB5b3UgbGlrZSIsICJwaGFzZSI6ICJtb3JuaW5nIiwgImFsdCI6IDYsICJtYXJrcyI6IDYsICJzdGFtcCI6ICJsYW5kZWQiLCAicmVwbHkiOiAic2FtZS4iLCAiYWZ0ZXIiOiB0cnVlfV19"),c=>c.charCodeAt(0))));
+const S=JSON.parse(new TextDecoder().decode(Uint8Array.from(atob("eyJ3aW5kb3dzIjogW3siaWQiOiAwLCAiYXQiOiAiMjAyNi0xMC0yMFQxMTowMDowMC0wNDowMCIsICJraWNrZXIiOiAidHVlc2RheSDCtyBsYXRlIG1vcm5pbmciLCAibDEiOiAiYW4gb3JkaW5hcnkgdHVlc2RheSwiLCAibDIiOiAic2xpZ2h0bHkgYmV0dGVyLiIsICJzdGF0dXMiOiAiYm9hcmRpbmcgaW4gMiBkYXlzIiwgInBoYXNlIjogImRheSIsICJhbHQiOiAwLCAibWFya3MiOiAwLCAiZ2FtZSI6ICJkZXBhcnR1cmVzIn0sIHsiaWQiOiAxLCAiYXQiOiAiMjAyNi0xMC0yMFQxNzowMDowMC0wNDowMCIsICJraWNrZXIiOiAidHVlc2RheSDCtyBnb2xkZW4gaG91ciIsICJsMSI6ICJzb2Z0IGxpZ2h0LiIsICJsMiI6ICJzaG9ydCB3ZWVrLiIsICJzdGF0dXMiOiAib24gdGltZSIsICJwaGFzZSI6ICJnb2xkZW4iLCAiYWx0IjogMCwgIm1hcmtzIjogMSwgImdhbWUiOiAidHJvbGxleSJ9LCB7ImlkIjogMiwgImF0IjogIjIwMjYtMTAtMjBUMjM6MDA6MDAtMDQ6MDAiLCAia2lja2VyIjogInR1ZXNkYXkgwrcgbmlnaHQiLCAibDEiOiAiZHJlc3MgY29kZTogcHJpbmNlc3MuIiwgImwyIjogInlvdSBvd24gb25lLCByaWdodD8iLCAic3RhdHVzIjogImRyZXNzIGNvZGU6IHByaW5jZXNzIiwgInBoYXNlIjogIm5pZ2h0IiwgImFsdCI6IDEsICJtYXJrcyI6IDIsICJnYW1lIjogIndhcmRyb2JlIn0sIHsiaWQiOiAzLCAiYXQiOiAiMjAyNi0xMC0yMVQwNTowMDowMC0wNDowMCIsICJraWNrZXIiOiAid2VkbmVzZGF5IMK3IGZpcnN0IGxpZ2h0IiwgImwxIjogImhhbGZ3YXkgdGhlcmUuIiwgImwyIjogInRoZSBza3kgYWdyZWVzLiIsICJzdGF0dXMiOiAib24gc2NoZWR1bGUiLCAicGhhc2UiOiAiZGF3biIsICJhbHQiOiAxLCAibWFya3MiOiAzfSwgeyJpZCI6IDQsICJhdCI6ICIyMDI2LTEwLTIxVDExOjAwOjAwLTA0OjAwIiwgImtpY2tlciI6ICJ3ZWRuZXNkYXkgwrcgbWlkZGF5IiwgImwxIjogIm5vIGx1Z2dhZ2UgbmVlZGVkLiIsICJsMiI6ICJqdXN0IHlvdS4iLCAic3RhdHVzIjogImJhZ2dhZ2U6IG5vbmUiLCAicGhhc2UiOiAiZGF5IiwgImFsdCI6IDIsICJtYXJrcyI6IDN9LCB7ImlkIjogNSwgImF0IjogIjIwMjYtMTAtMjFUMTc6MDA6MDAtMDQ6MDAiLCAia2lja2VyIjogIndlZG5lc2RheSDCtyBldmVuaW5nIiwgImwxIjogInRoaXMgdGltZSB0b21vcnJvdywiLCAibDIiOiAiYWxtb3N0LiIsICJzdGF0dXMiOiAiYm9hcmRpbmcgdG9tb3Jyb3ciLCAicGhhc2UiOiAiZ29sZGVuIiwgImFsdCI6IDIsICJtYXJrcyI6IDR9LCB7ImlkIjogNiwgImF0IjogIjIwMjYtMTAtMjFUMjM6MDA6MDAtMDQ6MDAiLCAia2lja2VyIjogIndlZG5lc2RheSDCtyBsYXRlIiwgImwxIjogIm9uZSBtb3JlIHNsZWVwLiIsICJsMiI6ICJ0aWFyYSBvcHRpb25hbC4iLCAic3RhdHVzIjogIjEgbmlnaHQgdG8gZ28iLCAicGhhc2UiOiAibmlnaHQiLCAiYWx0IjogMywgIm1hcmtzIjogNH0sIHsiaWQiOiA3LCAiYXQiOiAiMjAyNi0xMC0yMlQwNTowMDowMC0wNDowMCIsICJraWNrZXIiOiAidGh1cnNkYXkgwrcgZWFybHkiLCAibDEiOiAiZ29vZCBtb3JuaW5nLCIsICJsMiI6ICJwYXNzZW5nZXIgMTAtMTguIiwgInN0YXR1cyI6ICJ0b2RheSIsICJwaGFzZSI6ICJkYXduIiwgImFsdCI6IDMsICJtYXJrcyI6IDV9LCB7ImlkIjogOCwgImF0IjogIjIwMjYtMTAtMjJUMTE6MDA6MDAtMDQ6MDAiLCAia2lja2VyIjogInRodXJzZGF5IMK3IGxhdGUgbW9ybmluZyIsICJsMSI6ICJ0aGVyZSB3aWxsIGJlIGZsb3dlcnMuIiwgImwyIjogImFjdCBzdXJwcmlzZWQuIiwgInN0YXR1cyI6ICJjYXJnbzogZmxvd2VycyAobm90IGEgc2VjcmV0KSIsICJwaGFzZSI6ICJkYXkiLCAiYWx0IjogNCwgIm1hcmtzIjogNSwgImN0YSI6ICJpJ2xsIGFjdCBzdXJwcmlzZWQiLCAicmVwbHkiOiAiaSdsbCBhY3Qgc3VycHJpc2VkLiJ9LCB7ImlkIjogOSwgImF0IjogIjIwMjYtMTAtMjJUMTc6MDA6MDAtMDQ6MDAiLCAia2lja2VyIjogInRodXJzZGF5IMK3IGFsbW9zdCIsICJsMSI6ICJzYXZlIHJvb20iLCAibDIiOiAiZm9yIGRlc3NlcnQuIiwgInN0YXR1cyI6ICJwaWNrdXAgNjo0NSDCtyB5b3VyIGRvb3IiLCAicGhhc2UiOiAiZ29sZGVuIiwgImFsdCI6IDUsICJtYXJrcyI6IDV9LCB7ImlkIjogMTAsICJhdCI6ICIyMDI2LTEwLTIyVDE4OjQ1OjAwLTA0OjAwIiwgImtpY2tlciI6ICJub3cgYm9hcmRpbmciLCAibDEiOiAibG9vayBvdXRzaWRlLiIsICJsMiI6ICJpJ20gaGVyZS4iLCAic3RhdHVzIjogIm5vdyBib2FyZGluZyDCtyBzZWF0IDEwLTE4IiwgInBoYXNlIjogImJsdWUiLCAiYWx0IjogNiwgIm1hcmtzIjogNiwgInN0YW1wIjogImJvYXJkZWQiLCAiY3RhIjogImNvbWluZyBkb3duIPCfq6MiLCAicmVwbHkiOiAiY29taW5nIGRvd24g8J+royJ9LCB7ImlkIjogMTEsICJhdCI6ICIyMDI2LTEwLTIyVDIzOjAwOjAwLTA0OjAwIiwgImtpY2tlciI6ICJ0aHVyc2RheSDCtyBhZnRlciIsICJsMSI6ICJ0aGFuayB5b3UiLCAibDIiOiAiZm9yIHRvbmlnaHQuIiwgInN0YXR1cyI6ICJsYW5kZWQiLCAicGhhc2UiOiAibmlnaHQiLCAiYWx0IjogNiwgIm1hcmtzIjogNiwgInN0YW1wIjogImxhbmRlZCIsICJyZXBseSI6ICJ0aGFuayB5b3UgZm9yIHRvbmlnaHQuIiwgImFmdGVyIjogdHJ1ZX0sIHsiaWQiOiAxMiwgImF0IjogIjIwMjYtMTAtMjNUMDg6MDA6MDAtMDQ6MDAiLCAia2lja2VyIjogImZyaWRheSDCtyBtb3JuaW5nIiwgImwxIjogInN0aWxsIHRoaW5raW5nIiwgImwyIjogImFib3V0IGRlc3NlcnQuIiwgInN0YXR1cyI6ICJuZXh0IGZsaWdodDogd2hlbmV2ZXIgeW91IGxpa2UiLCAicGhhc2UiOiAibW9ybmluZyIsICJhbHQiOiA2LCAibWFya3MiOiA2LCAic3RhbXAiOiAibGFuZGVkIiwgInJlcGx5IjogInNhbWUuIiwgImFmdGVyIjogdHJ1ZX1dfQ=="),c=>c.charCodeAt(0))));
 const $=s=>document.querySelector(s);
 const qs=new URLSearchParams(location.search);
 const PREVIEW=qs.get('k')===C.previewKey&&qs.has('w');
@@ -362,7 +501,7 @@ $('#cal').onclick=()=>{const s=new Date(C.calStart),e=new Date(s.getTime()+(pars
 /* stars (once) */
 (function(){const s=$('#stars');seed(99);for(let i=0;i<55;i++){const d=document.createElement('div');d.className='star';d.style.left=rnd()*100+'%';d.style.top=rnd()*62+'%';const z=rnd();d.style.width=d.style.height=(z>.85?2.6:1.6)+'px';d.style.setProperty('--o',(.45+rnd()*.55).toFixed(2));d.style.setProperty('--d',(-rnd()*2.4)+'s');s.appendChild(d)}})();
 
-const BUILD='1020162847';
+const BUILD='1020225128';
 (function(){if(PREVIEW)return;fetch(location.pathname+'?cb='+Date.now(),{cache:'no-store'}).then(r=>r.text()).then(t=>{const m=t.match(/const BUILD='([^']+)'/);if(m&&m[1]!==BUILD&&!sessionStorage.getItem('rl'+m[1])){sessionStorage.setItem('rl'+m[1],'1');location.replace(location.pathname+'?b='+m[1])}}).catch(()=>{})})();
 let W=nowWin();fill();scene(W);
 /* 1. departures board — cuisine */
@@ -429,11 +568,11 @@ function cabin(s){
   dim.onclick=e=>{if(e.target!==kn){const r=dim.getBoundingClientRect();kn.style.transition='left .25s';set((e.clientX-r.left-22)/(r.width-44),true)}};
   s.querySelector('#lk').onclick=function(){this.style.opacity=0;const w=W[Math.round(v*4)];card('cabin',w,'noted. the crew will set the mood.',`cabin lights set to: ${w}.`)};
 }
-const GAMES={departures:{fn:departures,key:'meal'},trolley:{fn:trolley,key:'dessert'},cabin:{fn:cabin,key:'cabin'}};
+const GAMES={departures:{fn:departures,key:'meal'},trolley:{fn:trolley,key:'dessert'},cabin:{fn:cabin,key:'cabin'},wardrobe:{fn:XG[0].f,key:'dress'}};
 let ANS={};try{ANS=JSON.parse(localStorage.getItem('thu4.ans')||'{}')}catch(_){}
 try{const m=document.cookie.match(/(?:^|; )thu4ans=([^;]*)/);if(m)ANS=Object.assign(JSON.parse(decodeURIComponent(m[1])),ANS)}catch(_){}
 function saveAns(){if(PREVIEW)return;const j=JSON.stringify(ANS);try{localStorage.setItem('thu4.ans',j)}catch(_){}try{document.cookie='thu4ans='+encodeURIComponent(j)+';path=/thursday;max-age=1209600;samesite=lax'}catch(_){}}
-function showPrefs(){const L=[];const it=(k,g,lab)=>{if(ANS[k])L.push(`<span class="pf" data-g="${g}">${lab}: <b>${ANS[k]}</b> <u>change</u></span>`)};it('meal','departures','in-flight meal');it('dessert','trolley','dessert');it('cabin','cabin','cabin');
+function showPrefs(){const L=[];const it=(k,g,lab)=>{if(ANS[k])L.push(`<span class="pf" data-g="${g}">${lab}: <b>${ANS[k]}</b> <u>change</u></span>`)};it('meal','departures','in-flight meal');it('dessert','trolley','dessert');it('cabin','cabin','cabin');it('dress','wardrobe','dress code');
   const p=$('#prefs');p.innerHTML=L.join('<br>');p.querySelectorAll('.pf').forEach(e=>e.onclick=()=>openGame(e.dataset.g));p.style.display=L.length?'block':'none';if(opened&&$('#pass').classList.contains('on')){fit();setTimeout(fit,120)}}
 let GK=null;
 function msg(){}
