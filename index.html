@@ -457,7 +457,7 @@ f:function(s){
       <circle cx="30" cy="114" r="5" fill="#3b3646"/><circle cx="120" cy="114" r="5" fill="#3b3646"/>
     </svg><div class="co-zip"></div><div class="co-slots"><i></i><i></i><i></i></div>
     <div class="co-tag">packed<b>seat 10-18</b></div></div>
-    <button class="co-go" disabled>zip it</button><div class="co-any">honestly? all of it</div>`;
+    <button class="co-go" disabled>zip it</button><div class="co-any">or just tell sai 💬</div>`;
   const G=s.querySelector('.co-grid'),SL=[...s.querySelectorAll('.co-slots i')],GO=s.querySelector('.co-go'),BAG=s.querySelector('.co-bag'),ANY=s.querySelector('.co-any');
   const items=[...s.querySelectorAll('.co-i')];
   function paint(){
@@ -490,7 +490,7 @@ f:function(s){
     const big=all?'all of it':emo;
     setTimeout(()=>card('carry-on · packed',big,sub,txt),1500)}
   GO.onclick=()=>finish(false);
-  ANY.onclick=()=>finish(true);
+  ANY.onclick=()=>{ANS['excited']='told sai';saveAns();showPrefs();closeGame();setTimeout(()=>sendMsg('about tomorrow 🧳\ni\u2019m most excited for… '),700)};
   paint();
 }});
 </script>
@@ -597,7 +597,7 @@ $('#cal').onclick=()=>{const s=new Date(C.calStart),e=new Date(s.getTime()+(pars
 /* stars (once) */
 (function(){const s=$('#stars');seed(99);for(let i=0;i<55;i++){const d=document.createElement('div');d.className='star';d.style.left=rnd()*100+'%';d.style.top=rnd()*62+'%';const z=rnd();d.style.width=d.style.height=(z>.85?2.6:1.6)+'px';d.style.setProperty('--o',(.45+rnd()*.55).toFixed(2));d.style.setProperty('--d',(-rnd()*2.4)+'s');s.appendChild(d)}})();
 
-const BUILD='1021202704';
+const BUILD='1021203205';
 (function(){if(PREVIEW)return;fetch(location.pathname+'?cb='+Date.now(),{cache:'no-store'}).then(r=>r.text()).then(t=>{const m=t.match(/const BUILD='([^']+)'/);if(m&&m[1]!==BUILD&&!sessionStorage.getItem('rl'+m[1])){sessionStorage.setItem('rl'+m[1],'1');location.replace(location.pathname+'?b='+m[1])}}).catch(()=>{})})();
 let W=nowWin();fill();scene(W);
 /* 1. departures board — cuisine */
