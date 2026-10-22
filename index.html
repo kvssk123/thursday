@@ -398,10 +398,106 @@ f:function(s){
 }});
 
 </script>
+<script>
+window.XG.push({
+n:'🧳 Carry-on',
+t:'Carry-on',
+w:'Wed 11 pm · what are you excited for',
+d:'Pack up to 3 things you are excited about for tomorrow into a carry-on, then zip it.',
+css:`
+.co-sub{position:absolute;top:100px;left:0;right:0;text-align:center;font-size:9px;letter-spacing:1.6px;text-transform:uppercase;color:#8f88a0;white-space:nowrap}
+.co-grid{position:absolute;left:14px;right:14px;top:120px;display:grid;grid-template-columns:1fr 1fr;gap:7px;transition:opacity .4s}
+.co-i{position:relative;height:48px;border-radius:14px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.13);color:#efe9f6;display:flex;align-items:center;gap:8px;padding:0 9px;cursor:pointer;transition:all .22s;text-align:left}
+.co-i:active{transform:scale(.96)}
+.co-i em{font-style:normal;font-size:21px;line-height:1;flex:none;transition:transform .3s}
+.co-i b{display:block;white-space:nowrap;font:italic 300 14px Fraunces,Georgia,serif;line-height:1.1}
+.co-i small{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font:400 8px Inter,sans-serif;letter-spacing:.8px;color:#8f88a0;margin-top:2px}
+.co-i.on{border-color:#ffd58a;background:rgba(242,182,90,.13)}
+.co-i.on em{transform:scale(.0)}
+.co-i.full{opacity:.35}
+.co-bag{position:absolute;left:50%;top:345px;width:150px;height:118px;margin-left:-75px;transition:top .7s cubic-bezier(.2,1,.3,1),transform .7s cubic-bezier(.2,1,.3,1)}
+.co-bag svg{position:absolute;left:0;top:0;overflow:visible}
+.co-slots{position:absolute;left:22px;right:22px;top:46px;display:flex;justify-content:space-between}
+.co-slots i{width:30px;height:30px;border-radius:50%;border:1.5px dashed rgba(255,255,255,.35);display:flex;align-items:center;justify-content:center;font-style:normal;font-size:19px;transition:all .3s}
+.co-slots i.f{border:1.5px solid rgba(255,213,138,.0);background:rgba(255,255,255,.12);animation:copop .35s cubic-bezier(.2,1.6,.4,1)}
+@keyframes copop{0%{transform:scale(.2)}100%{transform:scale(1)}}
+.co-zip{position:absolute;left:24px;top:40px;height:4px;width:0;border-radius:2px;background:#ffd58a;transition:width .9s ease}
+.co-bag.zipped .co-zip{width:102px}
+.co-bag.zipped{animation:cowig .5s .9s}
+@keyframes cowig{0%,100%{transform:rotate(0)}30%{transform:rotate(-4deg)}65%{transform:rotate(3deg)}}
+.co-tag{position:absolute;right:-14px;top:12px;width:54px;padding:5px 0;border-radius:6px;background:#fbf8f3;color:#2a2733;text-align:center;font:600 7px Inter,sans-serif;letter-spacing:1px;text-transform:uppercase;transform-origin:50% -10px;transform:rotate(14deg) scale(0);transition:transform .5s 1.1s cubic-bezier(.2,1.6,.4,1)}
+.co-tag b{display:block;font:italic 300 12px Fraunces,serif;letter-spacing:0;text-transform:none}
+.co-bag.zipped .co-tag{transform:rotate(14deg) scale(1)}
+.co-fly{position:absolute;z-index:5;font-size:21px;pointer-events:none;transition:transform .55s cubic-bezier(.5,0,.3,1),opacity .55s}
+.co-go{position:absolute;left:50%;top:478px;transform:translateX(-50%);border:1px solid rgba(242,182,90,.6);background:rgba(242,182,90,.08);color:#ffd58a;border-radius:999px;padding:10px 28px;font:500 11px Inter,sans-serif;letter-spacing:2.5px;text-transform:uppercase;cursor:pointer;transition:opacity .3s;white-space:nowrap}
+.co-go[disabled]{opacity:.25;pointer-events:none}
+.co-any{position:absolute;left:0;right:0;top:520px;text-align:center;font:500 10px Inter,sans-serif;color:#8f88a0;text-decoration:underline;text-underline-offset:3px;cursor:pointer;transition:opacity .3s}
+`,
+f:function(s){
+  const IT=[
+    ['💐','the flowers','act surprised'],
+    ['👗','dressing up','princess mode'],
+    ['🍝','the food','in-flight meal'],
+    ['🍰','dessert','obviously'],
+    ['💬','long talks','no small talk'],
+    ['📸','a photo of us','proof it happened'],
+    ['🌙','the drive','city lights'],
+    ['🫣','you','don\u2019t tell him']];
+  const MAX=3,pick=[];
+  s.innerHTML=`<div class="kick"></div><div class="prompt">one more sleep.<br>pack your carry-on.</div>
+    <div class="co-sub">excited for what? · pick up to 3</div>
+    <div class="co-grid">${IT.map((x,i)=>`<div class="co-i" data-i="${i}"><em>${x[0]}</em><div><b>${x[1]}</b><small>${x[2]}</small></div></div>`).join('')}</div>
+    <div class="co-bag"><svg width="150" height="118" viewBox="0 0 150 118">
+      <path d="M58 14 Q58 2 75 2 Q92 2 92 14" fill="none" stroke="#cdb48a" stroke-width="5" stroke-linecap="round"/>
+      <rect x="8" y="14" width="134" height="96" rx="16" fill="#e9b7c3"/>
+      <rect x="8" y="14" width="134" height="96" rx="16" fill="url(#cog)"/>
+      <defs><linearGradient id="cog" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".22"/><stop offset="1" stop-color="#000" stop-opacity=".12"/></linearGradient></defs>
+      <path d="M8 34 L142 34" stroke="#d99dab" stroke-width="2"/>
+      <rect x="34" y="14" width="7" height="96" fill="#f3d3db" opacity=".7"/><rect x="109" y="14" width="7" height="96" fill="#f3d3db" opacity=".7"/>
+      <circle cx="30" cy="114" r="5" fill="#3b3646"/><circle cx="120" cy="114" r="5" fill="#3b3646"/>
+    </svg><div class="co-zip"></div><div class="co-slots"><i></i><i></i><i></i></div>
+    <div class="co-tag">packed<b>seat 10-18</b></div></div>
+    <button class="co-go" disabled>zip it</button><div class="co-any">honestly? all of it</div>`;
+  const G=s.querySelector('.co-grid'),SL=[...s.querySelectorAll('.co-slots i')],GO=s.querySelector('.co-go'),BAG=s.querySelector('.co-bag'),ANY=s.querySelector('.co-any');
+  const items=[...s.querySelectorAll('.co-i')];
+  function paint(){
+    SL.forEach((sl,k)=>{const p=pick[k];const want=p==null?'':IT[p][0];if(sl.textContent!==want){sl.textContent=want;sl.classList.toggle('f',p!=null)}});
+    items.forEach(e=>{const i=+e.dataset.i;e.classList.toggle('on',pick.includes(i));e.classList.toggle('full',pick.length>=MAX&&!pick.includes(i))});
+    GO.disabled=!pick.length;GO.textContent=pick.length?`zip it · ${pick.length}/${MAX}`:'zip it'}
+  function fly(e,k,done){
+    const sr=s.getBoundingClientRect(),sc=sr.width/272,a=e.querySelector('em').getBoundingClientRect(),b=SL[k].getBoundingClientRect();
+    const f=document.createElement('div');f.className='co-fly';f.textContent=e.querySelector('em').textContent;
+    f.style.left=((a.left-sr.left)/sc)+'px';f.style.top=((a.top-sr.top)/sc)+'px';s.appendChild(f);
+    const dx=(b.left-a.left)/sc+4,dy=(b.top-a.top)/sc+2;
+    requestAnimationFrame(()=>requestAnimationFrame(()=>{f.style.transform=`translate(${dx}px,${dy}px) scale(.85)`}));
+    setTimeout(()=>{f.remove();done()},520)}
+  items.forEach(e=>e.onclick=()=>{
+    if(BAG.classList.contains('zipped'))return;
+    const i=+e.dataset.i,at=pick.indexOf(i);
+    if(at>=0){pick.splice(at,1);paint();return}
+    if(pick.length>=MAX)return;
+    pick.push(i);const k=pick.length-1;e.classList.add('on');fly(e,k,paint)});
+  function finish(all){
+    GO.style.opacity=0;ANY.style.opacity=0;G.style.opacity=0;G.style.pointerEvents='none';
+    if(all){pick.length=0;pick.push(3,0,7);paint()}
+    BAG.style.top='150px';BAG.style.transform='scale(1.25)';
+    setTimeout(()=>BAG.classList.add('zipped'),500);
+    const names=pick.map(i=>IT[i][1]),emo=pick.map(i=>IT[i][0]).join(' ');
+    const hasYou=pick.includes(7),hasDes=pick.includes(3),hasFl=pick.includes(0);
+    const line=all?'same. all of it.':hasYou?'the feeling is mutual. very mutual.':hasDes?'dessert is already reserved. promise.':hasFl?'act surprised. you\u2019ve been warned.':'noted. see you at 6:45.';
+    const sub=(all?'everything. obviously.':names.join(' · '))+'<br>'+line;
+    const txt=all?'packed my carry-on for tomorrow 🧳\nhonestly? all of it.':'packed my carry-on for tomorrow 🧳\n'+pick.map(i=>`${IT[i][0]} ${IT[i][1]}`).join('\n');
+    const big=all?'all of it':emo;
+    setTimeout(()=>card('carry-on · packed',big,sub,txt),1500)}
+  GO.onclick=()=>finish(false);
+  ANY.onclick=()=>finish(true);
+  paint();
+}});
+</script>
 <script>document.head.insertAdjacentHTML('beforeend','<style>'+XG.map(g=>g.css).join('\n')+'</style>')</script>
 <script>
 const C={"airline": "dinner with sai", "fromCode": "YOU", "fromName": "your place", "toCode": "US", "toName": "somewhere with good dessert", "herName": "my bujji bangaram", "date": "thu, oct 22", "time": "7:00 pm", "seat": "10-18 · window", "gate": "your door, 6:45", "cls": "just us", "checkedIn": "it's a date 🫣", "stamp": "confirmed", "senderName": "sai", "imessage": "+15715858909", "whatsapp": "", "calTitle": "Dinner with Sai", "calStart": "2026-10-22T19:00", "calHours": "3", "marginNote": "princess attire. no exceptions.", "replyText": "looking forward to thursday 🫣", "previewKey": "6a"};
-const S=JSON.parse(new TextDecoder().decode(Uint8Array.from(atob("eyJ3aW5kb3dzIjogW3siaWQiOiAwLCAiYXQiOiAiMjAyNi0xMC0yMFQxMTowMDowMC0wNDowMCIsICJraWNrZXIiOiAidHVlc2RheSDCtyBsYXRlIG1vcm5pbmciLCAibDEiOiAiYW4gb3JkaW5hcnkgdHVlc2RheSwiLCAibDIiOiAic2xpZ2h0bHkgYmV0dGVyLiIsICJzdGF0dXMiOiAiYm9hcmRpbmcgaW4gMiBkYXlzIiwgInBoYXNlIjogImRheSIsICJhbHQiOiAwLCAibWFya3MiOiAwLCAiZ2FtZSI6ICJkZXBhcnR1cmVzIn0sIHsiaWQiOiAxLCAiYXQiOiAiMjAyNi0xMC0yMFQxNzowMDowMC0wNDowMCIsICJraWNrZXIiOiAidHVlc2RheSDCtyBnb2xkZW4gaG91ciIsICJsMSI6ICJzb2Z0IGxpZ2h0LiIsICJsMiI6ICJzaG9ydCB3ZWVrLiIsICJzdGF0dXMiOiAib24gdGltZSIsICJwaGFzZSI6ICJnb2xkZW4iLCAiYWx0IjogMCwgIm1hcmtzIjogMSwgImdhbWUiOiAidHJvbGxleSJ9LCB7ImlkIjogMiwgImF0IjogIjIwMjYtMTAtMjBUMjM6MDA6MDAtMDQ6MDAiLCAia2lja2VyIjogInR1ZXNkYXkgwrcgbmlnaHQiLCAibDEiOiAiZHJlc3MgY29kZTogcHJpbmNlc3MuIiwgImwyIjogInlvdSBvd24gb25lLCByaWdodD8iLCAic3RhdHVzIjogImRyZXNzIGNvZGU6IHByaW5jZXNzIiwgInBoYXNlIjogIm5pZ2h0IiwgImFsdCI6IDEsICJtYXJrcyI6IDIsICJnYW1lIjogIndhcmRyb2JlIn0sIHsiaWQiOiAzLCAiYXQiOiAiMjAyNi0xMC0yMVQwNTowMDowMC0wNDowMCIsICJraWNrZXIiOiAid2VkbmVzZGF5IMK3IGZpcnN0IGxpZ2h0IiwgImwxIjogImhhbGZ3YXkgdGhlcmUuIiwgImwyIjogInRoZSBza3kgYWdyZWVzLiIsICJzdGF0dXMiOiAib24gc2NoZWR1bGUiLCAicGhhc2UiOiAiZGF3biIsICJhbHQiOiAxLCAibWFya3MiOiAzfSwgeyJpZCI6IDQsICJhdCI6ICIyMDI2LTEwLTIxVDExOjAwOjAwLTA0OjAwIiwgImtpY2tlciI6ICJ3ZWRuZXNkYXkgwrcgbWlkZGF5IiwgImwxIjogIm5vIGx1Z2dhZ2UgbmVlZGVkLiIsICJsMiI6ICJqdXN0IHlvdS4iLCAic3RhdHVzIjogImJhZ2dhZ2U6IG5vbmUiLCAicGhhc2UiOiAiZGF5IiwgImFsdCI6IDIsICJtYXJrcyI6IDN9LCB7ImlkIjogNSwgImF0IjogIjIwMjYtMTAtMjFUMTc6MDA6MDAtMDQ6MDAiLCAia2lja2VyIjogIndlZG5lc2RheSDCtyBldmVuaW5nIiwgImwxIjogInRoaXMgdGltZSB0b21vcnJvdywiLCAibDIiOiAiYWxtb3N0LiIsICJzdGF0dXMiOiAiYm9hcmRpbmcgdG9tb3Jyb3ciLCAicGhhc2UiOiAiZ29sZGVuIiwgImFsdCI6IDIsICJtYXJrcyI6IDR9LCB7ImlkIjogNiwgImF0IjogIjIwMjYtMTAtMjFUMjM6MDA6MDAtMDQ6MDAiLCAia2lja2VyIjogIndlZG5lc2RheSDCtyBsYXRlIiwgImwxIjogIm9uZSBtb3JlIHNsZWVwLiIsICJsMiI6ICJ0aWFyYSBvcHRpb25hbC4iLCAic3RhdHVzIjogIjEgbmlnaHQgdG8gZ28iLCAicGhhc2UiOiAibmlnaHQiLCAiYWx0IjogMywgIm1hcmtzIjogNH0sIHsiaWQiOiA3LCAiYXQiOiAiMjAyNi0xMC0yMlQwNTowMDowMC0wNDowMCIsICJraWNrZXIiOiAidGh1cnNkYXkgwrcgZWFybHkiLCAibDEiOiAiZ29vZCBtb3JuaW5nLCIsICJsMiI6ICJwYXNzZW5nZXIgMTAtMTguIiwgInN0YXR1cyI6ICJ0b2RheSIsICJwaGFzZSI6ICJkYXduIiwgImFsdCI6IDMsICJtYXJrcyI6IDV9LCB7ImlkIjogOCwgImF0IjogIjIwMjYtMTAtMjJUMTE6MDA6MDAtMDQ6MDAiLCAia2lja2VyIjogInRodXJzZGF5IMK3IGxhdGUgbW9ybmluZyIsICJsMSI6ICJ0aGVyZSB3aWxsIGJlIGZsb3dlcnMuIiwgImwyIjogImFjdCBzdXJwcmlzZWQuIiwgInN0YXR1cyI6ICJjYXJnbzogZmxvd2VycyAobm90IGEgc2VjcmV0KSIsICJwaGFzZSI6ICJkYXkiLCAiYWx0IjogNCwgIm1hcmtzIjogNSwgImN0YSI6ICJpJ2xsIGFjdCBzdXJwcmlzZWQiLCAicmVwbHkiOiAiaSdsbCBhY3Qgc3VycHJpc2VkLiJ9LCB7ImlkIjogOSwgImF0IjogIjIwMjYtMTAtMjJUMTc6MDA6MDAtMDQ6MDAiLCAia2lja2VyIjogInRodXJzZGF5IMK3IGFsbW9zdCIsICJsMSI6ICJzYXZlIHJvb20iLCAibDIiOiAiZm9yIGRlc3NlcnQuIiwgInN0YXR1cyI6ICJwaWNrdXAgNjo0NSDCtyB5b3VyIGRvb3IiLCAicGhhc2UiOiAiZ29sZGVuIiwgImFsdCI6IDUsICJtYXJrcyI6IDV9LCB7ImlkIjogMTAsICJhdCI6ICIyMDI2LTEwLTIyVDE4OjQ1OjAwLTA0OjAwIiwgImtpY2tlciI6ICJub3cgYm9hcmRpbmciLCAibDEiOiAibG9vayBvdXRzaWRlLiIsICJsMiI6ICJpJ20gaGVyZS4iLCAic3RhdHVzIjogIm5vdyBib2FyZGluZyDCtyBzZWF0IDEwLTE4IiwgInBoYXNlIjogImJsdWUiLCAiYWx0IjogNiwgIm1hcmtzIjogNiwgInN0YW1wIjogImJvYXJkZWQiLCAiY3RhIjogImNvbWluZyBkb3duIPCfq6MiLCAicmVwbHkiOiAiY29taW5nIGRvd24g8J+royJ9LCB7ImlkIjogMTEsICJhdCI6ICIyMDI2LTEwLTIyVDIzOjAwOjAwLTA0OjAwIiwgImtpY2tlciI6ICJ0aHVyc2RheSDCtyBhZnRlciIsICJsMSI6ICJ0aGFuayB5b3UiLCAibDIiOiAiZm9yIHRvbmlnaHQuIiwgInN0YXR1cyI6ICJsYW5kZWQiLCAicGhhc2UiOiAibmlnaHQiLCAiYWx0IjogNiwgIm1hcmtzIjogNiwgInN0YW1wIjogImxhbmRlZCIsICJyZXBseSI6ICJ0aGFuayB5b3UgZm9yIHRvbmlnaHQuIiwgImFmdGVyIjogdHJ1ZX0sIHsiaWQiOiAxMiwgImF0IjogIjIwMjYtMTAtMjNUMDg6MDA6MDAtMDQ6MDAiLCAia2lja2VyIjogImZyaWRheSDCtyBtb3JuaW5nIiwgImwxIjogInN0aWxsIHRoaW5raW5nIiwgImwyIjogImFib3V0IGRlc3NlcnQuIiwgInN0YXR1cyI6ICJuZXh0IGZsaWdodDogd2hlbmV2ZXIgeW91IGxpa2UiLCAicGhhc2UiOiAibW9ybmluZyIsICJhbHQiOiA2LCAibWFya3MiOiA2LCAic3RhbXAiOiAibGFuZGVkIiwgInJlcGx5IjogInNhbWUuIiwgImFmdGVyIjogdHJ1ZX1dfQ=="),c=>c.charCodeAt(0))));
+const S=JSON.parse(new TextDecoder().decode(Uint8Array.from(atob("eyJ3aW5kb3dzIjogW3siaWQiOiAwLCAiYXQiOiAiMjAyNi0xMC0yMFQxMTowMDowMC0wNDowMCIsICJraWNrZXIiOiAidHVlc2RheSDCtyBsYXRlIG1vcm5pbmciLCAibDEiOiAiYW4gb3JkaW5hcnkgdHVlc2RheSwiLCAibDIiOiAic2xpZ2h0bHkgYmV0dGVyLiIsICJzdGF0dXMiOiAiYm9hcmRpbmcgaW4gMiBkYXlzIiwgInBoYXNlIjogImRheSIsICJhbHQiOiAwLCAibWFya3MiOiAwLCAiZ2FtZSI6ICJkZXBhcnR1cmVzIn0sIHsiaWQiOiAxLCAiYXQiOiAiMjAyNi0xMC0yMFQxNzowMDowMC0wNDowMCIsICJraWNrZXIiOiAidHVlc2RheSDCtyBnb2xkZW4gaG91ciIsICJsMSI6ICJzb2Z0IGxpZ2h0LiIsICJsMiI6ICJzaG9ydCB3ZWVrLiIsICJzdGF0dXMiOiAib24gdGltZSIsICJwaGFzZSI6ICJnb2xkZW4iLCAiYWx0IjogMCwgIm1hcmtzIjogMSwgImdhbWUiOiAidHJvbGxleSJ9LCB7ImlkIjogMiwgImF0IjogIjIwMjYtMTAtMjBUMjM6MDA6MDAtMDQ6MDAiLCAia2lja2VyIjogInR1ZXNkYXkgwrcgbmlnaHQiLCAibDEiOiAiZHJlc3MgY29kZTogcHJpbmNlc3MuIiwgImwyIjogInlvdSBvd24gb25lLCByaWdodD8iLCAic3RhdHVzIjogImRyZXNzIGNvZGU6IHByaW5jZXNzIiwgInBoYXNlIjogIm5pZ2h0IiwgImFsdCI6IDEsICJtYXJrcyI6IDIsICJnYW1lIjogIndhcmRyb2JlIn0sIHsiaWQiOiAzLCAiYXQiOiAiMjAyNi0xMC0yMVQwNTowMDowMC0wNDowMCIsICJraWNrZXIiOiAid2VkbmVzZGF5IMK3IGZpcnN0IGxpZ2h0IiwgImwxIjogImhhbGZ3YXkgdGhlcmUuIiwgImwyIjogInRoZSBza3kgYWdyZWVzLiIsICJzdGF0dXMiOiAib24gc2NoZWR1bGUiLCAicGhhc2UiOiAiZGF3biIsICJhbHQiOiAxLCAibWFya3MiOiAzfSwgeyJpZCI6IDQsICJhdCI6ICIyMDI2LTEwLTIxVDExOjAwOjAwLTA0OjAwIiwgImtpY2tlciI6ICJ3ZWRuZXNkYXkgwrcgbWlkZGF5IiwgImwxIjogIm5vIGx1Z2dhZ2UgbmVlZGVkLiIsICJsMiI6ICJqdXN0IHlvdS4iLCAic3RhdHVzIjogImJhZ2dhZ2U6IG5vbmUiLCAicGhhc2UiOiAiZGF5IiwgImFsdCI6IDIsICJtYXJrcyI6IDN9LCB7ImlkIjogNSwgImF0IjogIjIwMjYtMTAtMjFUMTc6MDA6MDAtMDQ6MDAiLCAia2lja2VyIjogIndlZG5lc2RheSDCtyBldmVuaW5nIiwgImwxIjogInRoaXMgdGltZSB0b21vcnJvdywiLCAibDIiOiAiYWxtb3N0LiIsICJzdGF0dXMiOiAiYm9hcmRpbmcgdG9tb3Jyb3ciLCAicGhhc2UiOiAiZ29sZGVuIiwgImFsdCI6IDIsICJtYXJrcyI6IDR9LCB7ImlkIjogNiwgImF0IjogIjIwMjYtMTAtMjFUMjM6MDA6MDAtMDQ6MDAiLCAia2lja2VyIjogIndlZG5lc2RheSDCtyBsYXRlIiwgImwxIjogIm9uZSBtb3JlIHNsZWVwLiIsICJsMiI6ICJ0aWFyYSBvcHRpb25hbC4iLCAic3RhdHVzIjogIjEgbmlnaHQgdG8gZ28iLCAicGhhc2UiOiAibmlnaHQiLCAiYWx0IjogMywgIm1hcmtzIjogNCwgImdhbWUiOiAiY2FycnlvbiJ9LCB7ImlkIjogNywgImF0IjogIjIwMjYtMTAtMjJUMDU6MDA6MDAtMDQ6MDAiLCAia2lja2VyIjogInRodXJzZGF5IMK3IGVhcmx5IiwgImwxIjogImdvb2QgbW9ybmluZywiLCAibDIiOiAicGFzc2VuZ2VyIDEwLTE4LiIsICJzdGF0dXMiOiAidG9kYXkiLCAicGhhc2UiOiAiZGF3biIsICJhbHQiOiAzLCAibWFya3MiOiA1fSwgeyJpZCI6IDgsICJhdCI6ICIyMDI2LTEwLTIyVDExOjAwOjAwLTA0OjAwIiwgImtpY2tlciI6ICJ0aHVyc2RheSDCtyBsYXRlIG1vcm5pbmciLCAibDEiOiAidGhlcmUgd2lsbCBiZSBmbG93ZXJzLiIsICJsMiI6ICJhY3Qgc3VycHJpc2VkLiIsICJzdGF0dXMiOiAiY2FyZ286IGZsb3dlcnMgKG5vdCBhIHNlY3JldCkiLCAicGhhc2UiOiAiZGF5IiwgImFsdCI6IDQsICJtYXJrcyI6IDUsICJjdGEiOiAiaSdsbCBhY3Qgc3VycHJpc2VkIiwgInJlcGx5IjogImknbGwgYWN0IHN1cnByaXNlZC4ifSwgeyJpZCI6IDksICJhdCI6ICIyMDI2LTEwLTIyVDE3OjAwOjAwLTA0OjAwIiwgImtpY2tlciI6ICJ0aHVyc2RheSDCtyBhbG1vc3QiLCAibDEiOiAic2F2ZSByb29tIiwgImwyIjogImZvciBkZXNzZXJ0LiIsICJzdGF0dXMiOiAicGlja3VwIDY6NDUgwrcgeW91ciBkb29yIiwgInBoYXNlIjogImdvbGRlbiIsICJhbHQiOiA1LCAibWFya3MiOiA1fSwgeyJpZCI6IDEwLCAiYXQiOiAiMjAyNi0xMC0yMlQxODo0NTowMC0wNDowMCIsICJraWNrZXIiOiAibm93IGJvYXJkaW5nIiwgImwxIjogImxvb2sgb3V0c2lkZS4iLCAibDIiOiAiaSdtIGhlcmUuIiwgInN0YXR1cyI6ICJub3cgYm9hcmRpbmcgwrcgc2VhdCAxMC0xOCIsICJwaGFzZSI6ICJibHVlIiwgImFsdCI6IDYsICJtYXJrcyI6IDYsICJzdGFtcCI6ICJib2FyZGVkIiwgImN0YSI6ICJjb21pbmcgZG93biDwn6ujIiwgInJlcGx5IjogImNvbWluZyBkb3duIPCfq6MifSwgeyJpZCI6IDExLCAiYXQiOiAiMjAyNi0xMC0yMlQyMzowMDowMC0wNDowMCIsICJraWNrZXIiOiAidGh1cnNkYXkgwrcgYWZ0ZXIiLCAibDEiOiAidGhhbmsgeW91IiwgImwyIjogImZvciB0b25pZ2h0LiIsICJzdGF0dXMiOiAibGFuZGVkIiwgInBoYXNlIjogIm5pZ2h0IiwgImFsdCI6IDYsICJtYXJrcyI6IDYsICJzdGFtcCI6ICJsYW5kZWQiLCAicmVwbHkiOiAidGhhbmsgeW91IGZvciB0b25pZ2h0LiIsICJhZnRlciI6IHRydWV9LCB7ImlkIjogMTIsICJhdCI6ICIyMDI2LTEwLTIzVDA4OjAwOjAwLTA0OjAwIiwgImtpY2tlciI6ICJmcmlkYXkgwrcgbW9ybmluZyIsICJsMSI6ICJzdGlsbCB0aGlua2luZyIsICJsMiI6ICJhYm91dCBkZXNzZXJ0LiIsICJzdGF0dXMiOiAibmV4dCBmbGlnaHQ6IHdoZW5ldmVyIHlvdSBsaWtlIiwgInBoYXNlIjogIm1vcm5pbmciLCAiYWx0IjogNiwgIm1hcmtzIjogNiwgInN0YW1wIjogImxhbmRlZCIsICJyZXBseSI6ICJzYW1lLiIsICJhZnRlciI6IHRydWV9XX0="),c=>c.charCodeAt(0))));
 const $=s=>document.querySelector(s);
 const qs=new URLSearchParams(location.search);
 const PREVIEW=qs.get('k')===C.previewKey&&qs.has('w');
@@ -501,7 +597,7 @@ $('#cal').onclick=()=>{const s=new Date(C.calStart),e=new Date(s.getTime()+(pars
 /* stars (once) */
 (function(){const s=$('#stars');seed(99);for(let i=0;i<55;i++){const d=document.createElement('div');d.className='star';d.style.left=rnd()*100+'%';d.style.top=rnd()*62+'%';const z=rnd();d.style.width=d.style.height=(z>.85?2.6:1.6)+'px';d.style.setProperty('--o',(.45+rnd()*.55).toFixed(2));d.style.setProperty('--d',(-rnd()*2.4)+'s');s.appendChild(d)}})();
 
-const BUILD='1020225128';
+const BUILD='1021202704';
 (function(){if(PREVIEW)return;fetch(location.pathname+'?cb='+Date.now(),{cache:'no-store'}).then(r=>r.text()).then(t=>{const m=t.match(/const BUILD='([^']+)'/);if(m&&m[1]!==BUILD&&!sessionStorage.getItem('rl'+m[1])){sessionStorage.setItem('rl'+m[1],'1');location.replace(location.pathname+'?b='+m[1])}}).catch(()=>{})})();
 let W=nowWin();fill();scene(W);
 /* 1. departures board — cuisine */
@@ -568,11 +664,11 @@ function cabin(s){
   dim.onclick=e=>{if(e.target!==kn){const r=dim.getBoundingClientRect();kn.style.transition='left .25s';set((e.clientX-r.left-22)/(r.width-44),true)}};
   s.querySelector('#lk').onclick=function(){this.style.opacity=0;const w=W[Math.round(v*4)];card('cabin',w,'noted. the crew will set the mood.',`cabin lights set to: ${w}.`)};
 }
-const GAMES={departures:{fn:departures,key:'meal'},trolley:{fn:trolley,key:'dessert'},cabin:{fn:cabin,key:'cabin'},wardrobe:{fn:XG[0].f,key:'dress'}};
+const GAMES={departures:{fn:departures,key:'meal'},trolley:{fn:trolley,key:'dessert'},cabin:{fn:cabin,key:'cabin'},wardrobe:{fn:XG[0].f,key:'dress'},carryon:{fn:XG[1].f,key:'excited'}};
 let ANS={};try{ANS=JSON.parse(localStorage.getItem('thu4.ans')||'{}')}catch(_){}
 try{const m=document.cookie.match(/(?:^|; )thu4ans=([^;]*)/);if(m)ANS=Object.assign(JSON.parse(decodeURIComponent(m[1])),ANS)}catch(_){}
 function saveAns(){if(PREVIEW)return;const j=JSON.stringify(ANS);try{localStorage.setItem('thu4.ans',j)}catch(_){}try{document.cookie='thu4ans='+encodeURIComponent(j)+';path=/thursday;max-age=1209600;samesite=lax'}catch(_){}}
-function showPrefs(){const L=[];const it=(k,g,lab)=>{if(ANS[k])L.push(`<span class="pf" data-g="${g}">${lab}: <b>${ANS[k]}</b> <u>change</u></span>`)};it('meal','departures','in-flight meal');it('dessert','trolley','dessert');it('cabin','cabin','cabin');it('dress','wardrobe','dress code');
+function showPrefs(){const L=[];const it=(k,g,lab)=>{if(ANS[k])L.push(`<span class="pf" data-g="${g}">${lab}: <b>${ANS[k]}</b> <u>change</u></span>`)};it('meal','departures','in-flight meal');it('dessert','trolley','dessert');it('cabin','cabin','cabin');it('dress','wardrobe','dress code');it('excited','carryon','carry-on');
   const p=$('#prefs');p.innerHTML=L.join('<br>');p.querySelectorAll('.pf').forEach(e=>e.onclick=()=>openGame(e.dataset.g));p.style.display=L.length?'block':'none';if(opened&&$('#pass').classList.contains('on')){fit();setTimeout(fit,120)}}
 let GK=null;
 function msg(){}
